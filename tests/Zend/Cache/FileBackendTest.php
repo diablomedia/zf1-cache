@@ -20,10 +20,6 @@
  * @version    $Id$
  */
 
-/**
- * Common tests for backends
- */
-require_once 'CommonExtendedBackendTest.php';
 
 /**
  * @category   Zend
@@ -33,7 +29,7 @@ require_once 'CommonExtendedBackendTest.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
+class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCase {
 
     protected $_instance;
     protected $_instance2;
@@ -98,6 +94,9 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_File(array());
@@ -105,14 +104,10 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
 
     public function testConstructorWithABadFileNamePrefix()
     {
-        try {
-            $class = new Zend_Cache_Backend_File(array(
-                'file_name_prefix' => 'foo bar'
-            ));
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $class = new Zend_Cache_Backend_File(array(
+            'file_name_prefix' => 'foo bar'
+        ));
     }
 
     public function testGetWithANonExistingCacheIdAndANullLifeTime()

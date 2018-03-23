@@ -4,16 +4,12 @@
  * @subpackage UnitTests
  */
 
-/**
- * Common tests for backends
- */
-require_once 'CommonBackendTest.php';
 
 /**
  * @package    Zend_Cache
  * @subpackage UnitTests
  */
-class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
+class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase {
 
     protected $_instance;
     protected $_instance2;
@@ -65,6 +61,8 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_Static(array());
+
+        $this->assertInstanceOf(Zend_Cache_Backend_Static::class, $test);
     }
 
     public function testRemoveCorrectCall()
@@ -191,10 +189,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
     public function testTestWithAnExistingCacheId()
     {
         $res = $this->_instance->test(bin2hex('/bar'));
-        if (!$res) {
-            $this->fail('test() return false');
-        }
-        return;
+        $this->assertNotFalse($res);
     }
 
     public function testTestWithANonExistingCacheId()
@@ -206,10 +201,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
     {
         $this->_instance->setDirectives(array('lifetime' => null));
         $res = $this->_instance->test(bin2hex('/bar'));
-        if (!$res) {
-            $this->fail('test() return false');
-        }
-        return;
+        $this->assertNotFalse($res);
     }
 
     public function testGetWithANonExistingCacheId()

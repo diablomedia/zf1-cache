@@ -103,6 +103,9 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         unset($this->_instance2);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall1()
     {
         $options = array(
@@ -112,6 +115,9 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         $test = new Zend_Cache_Frontend_Class($options);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall2()
     {
         $options = array(
@@ -127,12 +133,8 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
             'cached_entity' => new test(),
             0 => true,
         );
-        try {
-            $test = new Zend_Cache_Frontend_Class($options);
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $test = new Zend_Cache_Frontend_Class($options);
     }
 
     public function testCallCorrectCall1()
@@ -242,19 +244,16 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
 
     public function testConstructorWithABadCachedEntity()
     {
-        try {
-            $options = array(
-                'cached_entity' => array()
-            );
-            $instance = new Zend_Cache_Frontend_Class($options);
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $options = array(
+            'cached_entity' => array()
+        );
+        $instance = new Zend_Cache_Frontend_Class($options);
     }
 
     /**
      * @group ZF-5034
+     * @doesNotPerformAssertions
      */
     public function testCallingConstructorWithInvalidOptionShouldNotRaiseException()
     {

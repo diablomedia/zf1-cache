@@ -138,28 +138,21 @@ class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase {
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Frontend_File(array('master_file' => $this->_masterFile, 'lifetime' => 3600, 'caching' => true));
+        $this->assertInstanceOf(Zend_Cache_Frontend_File::class, $test);
     }
 
     public function testConstructorBadCall1()
     {
         # no masterfile
-        try {
-            $test = new Zend_Cache_Frontend_File(array('lifetime' => 3600, 'caching' => true));
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $test = new Zend_Cache_Frontend_File(array('lifetime' => 3600, 'caching' => true));
     }
 
     public function testConstructorBadCall2()
     {
         # incorrect option
-        try {
-            $test = new Zend_Cache_Frontend_File(array('master_file' => $this->_masterFile, 0 => 3600));
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $test = new Zend_Cache_Frontend_File(array('master_file' => $this->_masterFile, 0 => 3600));
     }
 
     public function testTestCorrectCall1()
@@ -204,12 +197,8 @@ class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase {
 
     public function testConstructorWithABadMasterFile()
     {
-        try {
-            $instance = new Zend_Cache_Frontend_File(array('master_file' => '/foo/bar/ljhfdjh/qhskldhqjk'));
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $instance = new Zend_Cache_Frontend_File(array('master_file' => '/foo/bar/ljhfdjh/qhskldhqjk'));
     }
 
     public function testGetWithDoNotTestCacheValidity()

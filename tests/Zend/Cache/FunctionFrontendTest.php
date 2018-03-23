@@ -74,6 +74,8 @@ class Zend_Cache_FunctionFrontendTest extends PHPUnit\Framework\TestCase {
             'cached_functions' => array('foo', 'bar')
         );
         $test = new Zend_Cache_Frontend_Function($options);
+
+        $this->assertInstanceOf(Zend_Cache_Frontend_Function::class, $test);
     }
 
     public function testConstructorBadCall()
@@ -82,12 +84,8 @@ class Zend_Cache_FunctionFrontendTest extends PHPUnit\Framework\TestCase {
             'cache_by_default' => false,
             0 => array('foo', 'bar')
         );
-        try {
-            $test = new Zend_Cache_Frontend_Function($options);
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $test = new Zend_Cache_Frontend_Function($options);
     }
 
     public function testCallCorrectCall1()
@@ -200,12 +198,8 @@ class Zend_Cache_FunctionFrontendTest extends PHPUnit\Framework\TestCase {
 
     public function testCallWithABadSyntax1()
     {
-        try {
-            $this->_instance->call(1, array());
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $this->_instance->call(1, array());
     }
 
 }

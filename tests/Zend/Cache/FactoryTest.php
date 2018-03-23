@@ -78,32 +78,27 @@ class Zend_Cache_FactoryTest extends PHPUnit\Framework\TestCase
     {
         try {
             $cache = Zend_Cache::factory('Core', 'Zend-Platform');
+            $this->assertInstanceOf(Zend_Cache::class, $cache);
         } catch (Zend_Cache_Exception $e) {
             $message = $e->getMessage();
             if (strstr($message, 'Incorrect backend')) {
                 $this->fail('Zend Platform is a valid backend');
+            } else {
+                $this->assertTrue(true, 'Caught exception was for a different reason');
             }
         }
     }
 
     public function testBadFrontend()
     {
-        try {
-            Zend_Cache::factory('badFrontend', 'File');
-        } catch (Zend_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Exception was expected but not thrown');
+        $this->expectException(Zend_Exception::class);
+        Zend_Cache::factory('badFrontend', 'File');
     }
 
     public function testBadBackend()
     {
-        try {
-            Zend_Cache::factory('Output', 'badBackend');
-        } catch (Zend_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Exception was expected but not thrown');
+        $this->expectException(Zend_Exception::class);
+        Zend_Cache::factory('Output', 'badBackend');
     }
 
     /**

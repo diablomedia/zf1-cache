@@ -20,10 +20,6 @@
  * @version    $Id$
  */
 
-/**
- * Common tests for backends
- */
-require_once 'CommonExtendedBackendTest.php';
 
 /**
  * @category   Zend
@@ -33,7 +29,7 @@ require_once 'CommonExtendedBackendTest.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest {
+class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase {
 
     protected $_instance;
 

@@ -50,26 +50,20 @@ class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase {
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Frontend_Page(array('lifetime' => 3600, 'caching' => true));
+
+        $this->assertInstanceOf(Zend_Cache_Frontend_Page::class, $test);
     }
 
     public function testConstructorUnimplementedOption()
     {
-        try {
-            $test = new Zend_Cache_Frontend_Page(array('http_conditional' => true));
-        } catch (Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Exception::class);
+        $test = new Zend_Cache_Frontend_Page(array('http_conditional' => true));
     }
 
     public function testConstructorWithBadDefaultOptions()
     {
-        try {
-            $test = new Zend_Cache_Frontend_Page(array('default_options' => 'foo'));
-        } catch (Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Exception::class);
+        $test = new Zend_Cache_Frontend_Page(array('default_options' => 'foo'));
     }
 
     /**
@@ -78,32 +72,20 @@ class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase {
      */
     public function testConstructorWithBadDefaultOptions2()
     {
-        try {
-            $test = new Zend_Cache_Frontend_Page(array('default_options' => array('cache' => true, 1 => 'bar')));
-        } catch (Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Exception::class);
+        $test = new Zend_Cache_Frontend_Page(array('default_options' => array('cache' => true, 1 => 'bar')));
     }
 
     public function testConstructorWithBadRegexps()
     {
-        try {
-            $test = new Zend_Cache_Frontend_Page(array('regexps' => 'foo'));
-        } catch (Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Exception::class);
+        $test = new Zend_Cache_Frontend_Page(array('regexps' => 'foo'));
     }
 
     public function testConstructorWithBadRegexps2()
     {
-        try {
-            $test = new Zend_Cache_Frontend_Page(array('regexps' => array('foo', 'bar')));
-        } catch (Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Exception::class);
+        $test = new Zend_Cache_Frontend_Page(array('regexps' => array('foo', 'bar')));
     }
 
     /**
@@ -122,12 +104,8 @@ class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase {
                'make_id_with_post_variables' => true,
            )
         );
-        try {
-            $test = new Zend_Cache_Frontend_Page(array('regexps' => $array));
-        } catch (Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Exception::class);
+        $test = new Zend_Cache_Frontend_Page(array('regexps' => $array));
     }
 
     public function testConstructorWithGoodRegexps()
@@ -143,11 +121,15 @@ class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase {
            )
         );
         $test = new Zend_Cache_Frontend_Page(array('regexps' => $array));
+
+        $this->assertInstanceOf(Zend_Cache_Frontend_Page::class, $test);
     }
 
     public function testConstructorWithGoodDefaultOptions()
     {
         $test = new Zend_Cache_Frontend_Page(array('default_options' => array('cache' => true)));
+
+        $this->assertInstanceOf(Zend_Cache_Frontend_Page::class, $test);
     }
 
     public function testStartEndCorrectCall1()
@@ -192,6 +174,7 @@ class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase {
 
     /**
      * @group ZF-10952
+     * @doesNotPerformAssertions
      */
     public function testNootice()
     {

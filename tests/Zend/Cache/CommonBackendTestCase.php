@@ -29,7 +29,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-abstract class Zend_Cache_CommonBackendTest extends PHPUnit\Framework\TestCase {
+abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCase {
 
     protected $_instance;
     protected $_className;
@@ -106,15 +106,14 @@ abstract class Zend_Cache_CommonBackendTest extends PHPUnit\Framework\TestCase {
 
     public function testConstructorBadOption()
     {
-        try {
-            $class = $this->_className;
-            $test = new $class(array(1 => 'bar'));
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $class = $this->_className;
+        $test = new $class(array(1 => 'bar'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDirectivesCorrectCall()
     {
         $this->_instance->setDirectives(array('lifetime' => 3600, 'logging' => true));
@@ -122,14 +121,13 @@ abstract class Zend_Cache_CommonBackendTest extends PHPUnit\Framework\TestCase {
 
     public function testSetDirectivesBadArgument()
     {
-        try {
-            $this->_instance->setDirectives('foo');
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $this->_instance->setDirectives('foo');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDirectivesBadDirective()
     {
         // A bad directive (not known by a specific backend) is possible
@@ -139,12 +137,8 @@ abstract class Zend_Cache_CommonBackendTest extends PHPUnit\Framework\TestCase {
 
     public function testSetDirectivesBadDirective2()
     {
-        try {
-            $this->_instance->setDirectives(array('foo' => true, 12 => 3600));
-        } catch (Zend_Cache_Exception $e) {
-            return;
-        }
-        $this->fail('Zend_Cache_Exception was expected but not thrown');
+        $this->expectException(Zend_Cache_Exception::class);
+        $this->_instance->setDirectives(array('foo' => true, 12 => 3600));
     }
 
     public function testSaveCorrectCall()
@@ -184,7 +178,7 @@ abstract class Zend_Cache_CommonBackendTest extends PHPUnit\Framework\TestCase {
         if (!($res > 999999)) {
             $this->fail('test() return an incorrect integer');
         }
-        return;
+        $this->assertInternalType('int', $res);
     }
 
     public function testTestWithANonExistingCacheId()
@@ -202,7 +196,7 @@ abstract class Zend_Cache_CommonBackendTest extends PHPUnit\Framework\TestCase {
         if (!($res > 999999)) {
             $this->fail('test() return an incorrect integer');
         }
-        return;
+        $this->assertInternalType('int', $res);
     }
 
     public function testGetWithANonExistingCacheId()

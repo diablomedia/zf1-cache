@@ -22,11 +22,6 @@
 
 
 /**
- * Common tests for backends
- */
-require_once 'CommonExtendedBackendTest.php';
-
-/**
  * @category   Zend
  * @package    Zend_Cache
  * @subpackage UnitTests
@@ -34,7 +29,7 @@ require_once 'CommonExtendedBackendTest.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTest {
+class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTestCase {
 
     protected $_instance;
     protected $skipped;
