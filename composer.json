@@ -39,6 +39,9 @@
         "phpstan/phpstan": "^0.9.2",
         "jetbrains/phpstorm-stubs": "dev-phpstan"
     },
+    "include-path": [
+        "src/"
+    ],
     "archive": {
         "exclude": ["/tests"]
     },
@@ -46,5 +49,14 @@
         "test": "phpunit ./tests",
         "test-with-coverage": "phpunit --coverage-clover=clover.xml ./tests",
         "phpstan": "phpstan analyze -l5 -c phpstan.neon --no-progress ./src --ansi"
+    },
+    "suggests": {
+        "ext-apc": "Used in the APC Backend",
+        "ext-memcached": "Used in the Libmemcached Backend",
+        "ext-memcache": "Used in the Memcached Backend",
+        "ext-wincache": "Used in the WinCache Backend",
+        "ext-hash": "May be used in the File Backend depending on hashing algorithm used",
+        "ext-sqlite": "Used in the Sqlite Backend",
+        "ext-xcache": "Used in the Xcache Backend"
     }
 }
