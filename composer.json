@@ -50,7 +50,7 @@
         "test-with-coverage": "phpunit --coverage-clover=clover.xml ./tests",
         "phpstan": "phpstan analyze -l5 -c phpstan.neon --no-progress ./src --ansi"
     },
-    "suggests": {
+    "suggest": {
         "ext-apc": "Used in the APC Backend",
         "ext-memcached": "Used in the Libmemcached Backend",
         "ext-memcache": "Used in the Memcached Backend",
