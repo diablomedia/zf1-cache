@@ -97,6 +97,8 @@ abstract class Zend_Cache
                 $backendObject = $backend;
             } else {
                 self::throwException('backend must be a backend name (string) or an object which implements Zend_Cache_Backend_Interface');
+                // this return will never be hit
+                return;
             }
         }
         if (is_string($frontend)) {
@@ -106,6 +108,8 @@ abstract class Zend_Cache
                 $frontendObject = $frontend;
             } else {
                 self::throwException('frontend must be a frontend name (string) or an object');
+                // this return will never be hit
+                return;
             }
         }
         $frontendObject->setBackend($backendObject);

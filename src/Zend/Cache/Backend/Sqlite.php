@@ -484,6 +484,8 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
             $db = @sqlite_open($this->_options['cache_db_complete_path']);
             if (!(is_resource($db))) {
                 Zend_Cache::throwException("Impossible to open " . $this->_options['cache_db_complete_path'] . " cache DB file");
+                // this return is never hit
+                return $this->_db;
             }
             $this->_db = $db;
 

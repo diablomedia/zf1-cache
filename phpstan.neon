@@ -1,2 +1,19 @@
 parameters:
+    bootstrap: %rootDir%/../../../phpstan-bootstrap.php
     ignoreErrors:
+        - '#Zend_Cache_.+::__construct\(\) does not call parent constructor from Zend_Cache_Core\.#'
+        - '#Zend_Cache_Backend_Test::__construct\(\) does not call parent constructor from Zend_Cache_Backend\.#'
+        - '#Result of function sqlite_close \(void\) is used\.#'
+        - '#Function accelerator_license_info not found\.#'
+        - '#Function accelerator_get_configuration not found\.#'
+        - '#Variable \$tmp might not be defined\.#'
+        - '#Variable \$resultSlow might not be defined\.#'
+        - '#Variable \$abort might not be defined\.#'
+        # Backend classes implement, but abstract does not
+        - '#Call to an undefined method Zend_Cache_Backend::getCapabilities\(\)\.#'
+        - '#Method Zend_Cache::factory\(\) should return Zend_Cache_Core but empty return statement found\.#'
+        - '#Strict comparison using === between int and null will always evaluate to false\.#'
+        - '#Strict comparison using === between string and null will always evaluate to false\.#'
+        - '#Strict comparison using !== between string and null will always evaluate to true\.#'
+        - '#Casting to .+ something that.s already .+\.#'
+        - '#Parameter \#1 \$data of method Zend_Cache_Backend_File::_hash\(\) expects string, false\|string given\.#'

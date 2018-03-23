@@ -340,7 +340,7 @@ class Zend_Cache_Core
      * @param  mixed $data           Data to put in cache (can be another type than string if automatic_serialization is on)
      * @param  string $id             Cache id (if not set, the last cache id will be used)
      * @param  array $tags           Cache tags
-     * @param  int $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
+     * @param  int|bool $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
      * @param  int   $priority         integer between 0 (very low priority) and 10 (maximum priority) used by some particular backends
      * @throws Zend_Cache_Exception
      * @return boolean True if no problem
@@ -460,7 +460,7 @@ class Zend_Cache_Core
                                    Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG))) {
             Zend_Cache::throwException('Invalid cleaning mode');
         }
-        $this->_validateTagsArray($tags);
+        $this->_validateTagsArray((array) $tags);
 
         return $this->_backend->clean($mode, $tags);
     }

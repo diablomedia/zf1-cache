@@ -110,7 +110,7 @@ class Zend_Cache_Backend_Apc extends Zend_Cache_Backend implements Zend_Cache_Ba
      * Remove a cache record
      *
      * @param  string $id cache id
-     * @return boolean true if no problem
+     * @return boolean|array true if no problem
      */
     public function remove($id)
     {
