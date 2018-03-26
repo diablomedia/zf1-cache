@@ -35,7 +35,3 @@ defined('TESTS_ZEND_CACHE_WINCACHE_ENABLED') || define('TESTS_ZEND_CACHE_WINCACH
 defined('TESTS_ZEND_CACHE_XCACHE_ENABLED') || define('TESTS_ZEND_CACHE_XCACHE_ENABLED', false);
 defined('TESTS_ZEND_CACHE_XCACHE_PASSWORD') || define('TESTS_ZEND_CACHE_XCACHE_PASSWORD', null);
 defined('TESTS_ZEND_CACHE_XCACHE_USER') || define('TESTS_ZEND_CACHE_XCACHE_USER', null);
-
-if (getenv('TRAVIS')) {
-    var_dump(get_defined_constants());
-}
