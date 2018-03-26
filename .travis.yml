@@ -14,12 +14,10 @@ branches:
   only:
     master
 
-before_install:
-  - phpenv config-add travis-config.ini
-  - travis_retry composer self-update
-
 install:
-  - pecl install apcu_bc
+  - echo "yes\nno\n" | pecl install apcu && sed -i 's/extension="apcu.so"//' ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - pecl install apcu_bc && sed -i 's/extension="apc.so"//' ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - phpenv config-add travis-config.ini
   - phpenv rehash
   - travis_retry composer install --no-interaction --prefer-source
 
