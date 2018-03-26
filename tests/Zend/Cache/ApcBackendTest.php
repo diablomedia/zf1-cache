@@ -59,11 +59,17 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_Apc();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeOld() {
         $this->_instance->setDirectives(array('logging' => false));
         $this->_instance->clean('old');
@@ -71,6 +77,9 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
         $this->_instance->setDirectives(array('logging' => true));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeMatchingTags() {
         $this->_instance->setDirectives(array('logging' => false));
         $this->_instance->clean('matchingTag', array('tag1'));
@@ -78,6 +87,9 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
         $this->_instance->setDirectives(array('logging' => true));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags() {
         $this->_instance->setDirectives(array('logging' => false));
         $this->_instance->clean('notMatchingTag', array('tag1'));
@@ -86,18 +98,42 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
     }
 
     // Because of limitations of this backend...
-    public function testGetWithAnExpiredCacheId() {}
-    public function testCleanModeMatchingTags2() {}
-    public function testCleanModeNotMatchingTags2() {}
-    public function testCleanModeNotMatchingTags3() {}
-    public function testGetIdsMatchingTags() {}
-    public function testGetIdsMatchingTags2() {}
-    public function testGetIdsMatchingTags3() {}
-    public function testGetIdsMatchingTags4() {}
-    public function testGetIdsNotMatchingTags() {}
-    public function testGetIdsNotMatchingTags2() {}
-    public function testGetIdsNotMatchingTags3() {}
-    public function testGetTags() {}
+    public function testGetWithAnExpiredCacheId() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testCleanModeMatchingTags2() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testCleanModeNotMatchingTags2() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testCleanModeNotMatchingTags3() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testGetIdsMatchingTags() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testGetIdsMatchingTags2() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testGetIdsMatchingTags3() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testGetIdsMatchingTags4() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testGetIdsNotMatchingTags() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testGetIdsNotMatchingTags2() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testGetIdsNotMatchingTags3() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testGetTags() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
 
     public function testSaveCorrectCall()
     {

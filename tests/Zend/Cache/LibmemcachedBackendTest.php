@@ -97,7 +97,7 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
     }
 
     /**
-     * @doesNotPeformAssertions
+     * @doesNotPerformAssertions
      */
     public function testConstructorCorrectCall()
     {
@@ -105,7 +105,7 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
     }
 
     /**
-     * @doesNotPeformAssertions
+     * @doesNotPerformAssertions
      */
     public function testCleanModeOld()
     {
@@ -116,7 +116,7 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
     }
 
     /**
-     * @doesNotPeformAssertions
+     * @doesNotPerformAssertions
      */
     public function testCleanModeMatchingTags()
     {
@@ -127,7 +127,7 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
     }
 
     /**
-     * @doesNotPeformAssertions
+     * @doesNotPerformAssertions
      */
     public function testCleanModeNotMatchingTags()
     {
