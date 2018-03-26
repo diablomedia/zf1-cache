@@ -5,24 +5,8 @@
     beStrictAboutTestsThatDoNotTestAnything="true"
     backupGlobals="true"
     stderr="true"
-    colors="true">
-    <php>
-        <const name="TESTS_ZEND_CACHE_SQLITE_ENABLED" value="false" />
-        <const name="TESTS_ZEND_CACHE_APC_ENABLED" value="false" />
-        <const name="TESTS_ZEND_CACHE_WINCACHE_ENABLED" value="false" />
-        <const name="TESTS_ZEND_CACHE_XCACHE_ENABLED" value="false" />
-        <const name="TESTS_ZEND_CACHE_XCACHE_USER" value="null" />
-        <const name="TESTS_ZEND_CACHE_XCACHE_PASSWORD" value="null" />
-        <const name="TESTS_ZEND_CACHE_PLATFORM_ENABLED" value="false" />
-        <const name="TESTS_ZEND_CACHE_MEMCACHED_ENABLED" value="false" />
-        <const name="TESTS_ZEND_CACHE_MEMCACHED_HOST" value="127.0.0.1" />
-        <const name="TESTS_ZEND_CACHE_MEMCACHED_PORT" value="11211" />
-        <const name="TESTS_ZEND_CACHE_MEMCACHED_PERSISTENT" value="true" />
-        <const name="TESTS_ZEND_CACHE_LIBMEMCACHED_ENABLED" value="false" />
-        <const name="TESTS_ZEND_CACHE_LIBMEMCACHED_HOST" value="127.0.0.1" />
-        <const name="TESTS_ZEND_CACHE_LIBMEMCACHED_PORT" value="11211" />
-        <const name="TESTS_ZEND_CACHE_LIBMEMCACHED_WEIGHT" value="1" />
-    </php>
+    colors="true"
+    bootstrap="./phpunit-bootstrap.php">
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>
