@@ -96,11 +96,17 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
         }
     }
 
+    /**
+     * @doesNotPeformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_Libmemcached();
     }
 
+    /**
+     * @doesNotPeformAssertions
+     */
     public function testCleanModeOld()
     {
         $this->_instance->setDirectives(array('logging' => false));
@@ -109,6 +115,9 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
         $this->_instance->setDirectives(array('logging' => true));
     }
 
+    /**
+     * @doesNotPeformAssertions
+     */
     public function testCleanModeMatchingTags()
     {
         $this->_instance->setDirectives(array('logging' => false));
@@ -117,6 +126,9 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
         $this->_instance->setDirectives(array('logging' => true));
     }
 
+    /**
+     * @doesNotPeformAssertions
+     */
     public function testCleanModeNotMatchingTags()
     {
         $this->_instance->setDirectives(array('logging' => false));
@@ -146,10 +158,19 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
     }
 
     // Because of limitations of this backend...
-    public function testGetWithAnExpiredCacheId() {}
-    public function testCleanModeMatchingTags2() {}
-    public function testCleanModeNotMatchingTags2() {}
-    public function testCleanModeNotMatchingTags3() {}
+    public function testGetWithAnExpiredCacheId() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testCleanModeMatchingTags2() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testCleanModeNotMatchingTags2() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+    public function testCleanModeNotMatchingTags3() {
+        $this->markTestSkipped('Not supported by this backend');
+    }
+
     public function testSaveCorrectCall()
     {
         $this->_instance->setDirectives(array('logging' => false));

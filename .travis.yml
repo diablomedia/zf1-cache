@@ -15,6 +15,7 @@ branches:
     master
 
 before_install:
+  - pecl install sqlite
   - phpenv config-add travis-config.ini
   - travis_retry composer self-update
 

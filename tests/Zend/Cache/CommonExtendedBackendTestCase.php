@@ -67,6 +67,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     {
         if (!($this->_capabilities['get_list'])) {
             # unsupported by this backend
+            $this->markTestSkipped('Not supported by this backend');
             return;
         }
         $res = $this->_instance->getIds();
@@ -80,6 +81,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     {
         if (!($this->_capabilities['tags'])) {
             # unsupported by this backend
+            $this->markTestSkipped('Not supported by this backend');
             return;
         }
         $res = $this->_instance->getTags();
@@ -94,6 +96,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     {
         if (!($this->_capabilities['tags'])) {
             # unsupported by this backend
+            $this->markTestSkipped('Not supported by this backend');
             return;
         }
         $res = $this->_instance->getIdsMatchingTags(array('tag3'));
@@ -107,6 +110,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     {
         if (!($this->_capabilities['tags'])) {
             # unsupported by this backend
+            $this->markTestSkipped('Not supported by this backend');
             return;
         }
         $res = $this->_instance->getIdsMatchingTags(array('tag2'));
@@ -118,6 +122,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     {
         if (!($this->_capabilities['tags'])) {
             # unsupported by this backend
+            $this->markTestSkipped('Not supported by this backend');
             return;
         }
         $res = $this->_instance->getIdsMatchingTags(array('tag9999'));
@@ -129,6 +134,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     {
         if (!($this->_capabilities['tags'])) {
             # unsupported by this backend
+            $this->markTestSkipped('Not supported by this backend');
             return;
         }
         $res = $this->_instance->getIdsMatchingTags(array('tag3', 'tag4'));
@@ -140,6 +146,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     {
         if (!($this->_capabilities['tags'])) {
             # unsupported by this backend
+            $this->markTestSkipped('Not supported by this backend');
             return;
         }
         $res = $this->_instance->getIdsNotMatchingTags(array('tag3'));
@@ -150,6 +157,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     {
         if (!($this->_capabilities['tags'])) {
             # unsupported by this backend
+            $this->markTestSkipped('Not supported by this backend');
             return;
         }
         $res = $this->_instance->getIdsNotMatchingTags(array('tag1'));
@@ -162,6 +170,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     {
         if (!($this->_capabilities['tags'])) {
             # unsupported by this backend
+            $this->markTestSkipped('Not supported by this backend');
             return;
         }
         $res = $this->_instance->getIdsNotMatchingTags(array('tag1', 'tag4'));
