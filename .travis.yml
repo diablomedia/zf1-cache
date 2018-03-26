@@ -1,6 +1,6 @@
 language: php
 
-sudo: true
+sudo: false
 
 php:
   - 7
@@ -15,11 +15,11 @@ branches:
     master
 
 before_install:
-  - pecl install sqlite
   - phpenv config-add travis-config.ini
   - travis_retry composer self-update
 
 install:
+  - pecl install sqlite
   - phpenv rehash
   - travis_retry composer install --no-interaction --prefer-source
 
