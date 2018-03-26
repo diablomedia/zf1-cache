@@ -21,6 +21,9 @@ install:
   - phpenv rehash
   - travis_retry composer install --no-interaction --prefer-source
 
+services:
+  - memcached
+
 stages:
   - test
   - phpstan analysis
