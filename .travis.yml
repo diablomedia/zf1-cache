@@ -15,8 +15,6 @@ branches:
     master
 
 before_install:
-  - pecl install sqlite
-  - phpenv config-add travis-config.ini
   - travis_retry composer self-update
 
 install:
@@ -32,6 +30,8 @@ stages:
   - test with coverage
 
 before_script:
+  - pecl install sqlite
+  - phpenv config-add travis-config.ini
   - if [[ "$USE_XDEBUG" == false ]]; then phpenv config-rm xdebug.ini || return 0; fi
 
 script:
