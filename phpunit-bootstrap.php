@@ -14,7 +14,7 @@ if (extension_loaded('apc')) {
     defined('TESTS_ZEND_CACHE_APC_ENABLED') || define('TESTS_ZEND_CACHE_APC_ENABLED', false);
 }
 
-if (extension_loaded('sqlite')) {
+if (extension_loaded('sqlite') || extension_loaded('sqlite3')) {
     defined('TESTS_ZEND_CACHE_SQLITE_ENABLED') || define('TESTS_ZEND_CACHE_SQLITE_ENABLED', true);
 } else {
     defined('TESTS_ZEND_CACHE_SQLITE_ENABLED') || define('TESTS_ZEND_CACHE_SQLITE_ENABLED', false);

@@ -56,7 +56,6 @@
         "ext-memcache": "Used in the Memcached Backend",
         "ext-wincache": "Used in the WinCache Backend",
         "ext-hash": "May be used in the File Backend depending on hashing algorithm used",
-        "ext-sqlite": "Used in the Sqlite Backend",
         "ext-xcache": "Used in the Xcache Backend"
     }
 }

@@ -1,7 +1,6 @@
 language: php
 
-sudo: required
-dist: trusty
+sudo: false
 
 php:
   - 7
@@ -20,7 +19,6 @@ before_install:
   - travis_retry composer self-update
 
 install:
-  - pecl install sqlite
   - phpenv rehash
   - travis_retry composer install --no-interaction --prefer-source
 

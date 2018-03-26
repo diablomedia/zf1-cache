@@ -17,10 +17,6 @@ if (!extension_loaded('memcached')) {
     require_once __DIR__ . '/vendor/jetbrains/phpstorm-stubs/memcached/memcached.php';
 }
 
-if (!extension_loaded('sqlite')) {
-    require_once __DIR__ . '/vendor/jetbrains/phpstorm-stubs/SQLite/SQLite.php';
-}
-
 if (!extension_loaded('wincache')) {
     require_once __DIR__ . '/vendor/jetbrains/phpstorm-stubs/wincache/wincache.php';
 }

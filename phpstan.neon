@@ -3,7 +3,6 @@ parameters:
     ignoreErrors:
         - '#Zend_Cache_.+::__construct\(\) does not call parent constructor from Zend_Cache_Core\.#'
         - '#Zend_Cache_Backend_Test::__construct\(\) does not call parent constructor from Zend_Cache_Backend\.#'
-        - '#Result of function sqlite_close \(void\) is used\.#'
         - '#Function accelerator_license_info not found\.#'
         - '#Function accelerator_get_configuration not found\.#'
         - '#Variable \$tmp might not be defined\.#'
