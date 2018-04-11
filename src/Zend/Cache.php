@@ -48,7 +48,14 @@ abstract class Zend_Cache
      *
      * @var array
      */
-    public static $standardExtendedBackends = array('File', 'Apc', 'TwoLevels', 'Memcached', 'Libmemcached', 'WinCache');
+    public static $standardExtendedBackends = array(
+        'File',
+        'Apc',
+        'TwoLevels',
+        'Memcached',
+        'Libmemcached',
+        'WinCache'
+    );
 
     /**
      * Only for backward compatibility (may be removed in next major release)
@@ -64,7 +71,16 @@ abstract class Zend_Cache
      * @var array
      * @deprecated
      */
-    public static $availableBackends = array('File', 'Memcached', 'Libmemcached', 'Apc', 'ZendPlatform', 'Xcache', 'WinCache', 'TwoLevels');
+    public static $availableBackends = array(
+        'File',
+        'Memcached',
+        'Libmemcached',
+        'Apc',
+        'ZendPlatform',
+        'Xcache',
+        'WinCache',
+        'TwoLevels'
+    );
 
     /**
      * Consts for clean() method
@@ -82,21 +98,35 @@ abstract class Zend_Cache
      * @param string|Zend_Cache_Backend  $backend         backend name (string) or Zend_Cache_Backend_ object
      * @param array  $frontendOptions associative array of options for the corresponding frontend constructor
      * @param array  $backendOptions  associative array of options for the corresponding backend constructor
-     * @param boolean $customFrontendNaming if true, the frontend argument is used as a complete class name ; if false, the frontend argument is used as the end of "Zend_Cache_Frontend_[...]" class name
-     * @param boolean $customBackendNaming if true, the backend argument is used as a complete class name ; if false, the backend argument is used as the end of "Zend_Cache_Backend_[...]" class name
-     * @param boolean $autoload if true, there will no require_once for backend and frontend (useful only for custom backends/frontends)
+     * @param boolean $customFrontendNaming if true, the frontend argument is used as a complete class name ;
+     *                                      if false, the frontend argument is used as the end of
+     *                                      "Zend_Cache_Frontend_[...]" class name
+     * @param boolean $customBackendNaming if true, the backend argument is used as a complete class name ;
+     *                                     if false, the backend argument is used as the end of
+     *                                     "Zend_Cache_Backend_[...]" class name
+     * @param boolean $autoload if true, there will no require_once for backend and frontend
+     *                          (useful only for custom backends/frontends)
      * @throws Zend_Cache_Exception
      * @return Zend_Cache_Core
      */
-    public static function factory($frontend, $backend, $frontendOptions = array(), $backendOptions = array(), $customFrontendNaming = false, $customBackendNaming = false, $autoload = false)
-    {
+    public static function factory(
+        $frontend,
+        $backend,
+        $frontendOptions = array(),
+        $backendOptions = array(),
+        $customFrontendNaming = false,
+        $customBackendNaming = false,
+        $autoload = false
+    ) {
         if (is_string($backend)) {
             $backendObject = self::_makeBackend($backend, $backendOptions, $customBackendNaming, $autoload);
         } else {
             if ((is_object($backend)) && (in_array('Zend_Cache_Backend_Interface', class_implements($backend)))) {
                 $backendObject = $backend;
             } else {
-                self::throwException('backend must be a backend name (string) or an object which implements Zend_Cache_Backend_Interface');
+                self::throwException(
+                    'backend must be a backend name (string) or an object which implements Zend_Cache_Backend_Interface'
+                );
                 // this return will never be hit
                 return;
             }
@@ -128,12 +158,12 @@ abstract class Zend_Cache
     public static function _makeBackend($backend, $backendOptions, $customBackendNaming = false, $autoload = false)
     {
         if (!$customBackendNaming) {
-            $backend  = self::_normalizeName($backend);
+            $backend = self::_normalizeName($backend);
         }
         if (in_array($backend, Zend_Cache::$standardBackends)) {
             // we use a standard backend
             $backendClass = 'Zend_Cache_Backend_' . $backend;
-            // security controls are explicit
+        // security controls are explicit
         } else {
             // we use a custom backend
             if (!preg_match('~^[\w\\\\]+$~D', $backend)) {
@@ -165,8 +195,12 @@ abstract class Zend_Cache
      * @param boolean $autoload
      * @return Zend_Cache_Core
      */
-    public static function _makeFrontend($frontend, $frontendOptions = array(), $customFrontendNaming = false, $autoload = false)
-    {
+    public static function _makeFrontend(
+        $frontend,
+        $frontendOptions = array(),
+        $customFrontendNaming = false,
+        $autoload = false
+    ) {
         if (!$customFrontendNaming) {
             $frontend = self::_normalizeName($frontend);
         }
@@ -174,7 +208,7 @@ abstract class Zend_Cache
             // we use a standard frontend
             // For perfs reasons, with frontend == 'Core', we can interact with the Core itself
             $frontendClass = 'Zend_Cache_' . ($frontend != 'Core' ? 'Frontend_' : '') . $frontend;
-            // security controls are explicit
+        // security controls are explicit
         } else {
             // we use a custom frontend
             if (!preg_match('~^[\w\\\\]+$~D', $frontend)) {
@@ -247,5 +281,4 @@ abstract class Zend_Cache
         @fclose($fh);
         return true;
     }
-
 }

@@ -51,7 +51,7 @@ class Zend_Cache_Frontend_Capture extends Zend_Cache_Core
      */
     public function start($id, array $tags, $extension = null)
     {
-        $this->_tags = $tags;
+        $this->_tags      = $tags;
         $this->_extension = $extension;
         ob_start(array($this, '_flush'));
         ob_implicit_flush(false);

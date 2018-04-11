@@ -29,8 +29,8 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase {
-
+class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase
+{
     private $_instance1;
     private $_instance2;
     private $_instance3;
@@ -43,24 +43,24 @@ class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase {
     public function setUp()
     {
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $this->_masterFile = $this->_getTmpDirWindows() . DIRECTORY_SEPARATOR . 'zend_cache_master';
+            $this->_masterFile  = $this->_getTmpDirWindows() . DIRECTORY_SEPARATOR . 'zend_cache_master';
             $this->_masterFile1 = $this->_getTmpDirWindows() . DIRECTORY_SEPARATOR . 'zend_cache_master1';
             $this->_masterFile2 = $this->_getTmpDirWindows() . DIRECTORY_SEPARATOR . 'zend_cache_master2';
         } else {
-            $this->_masterFile = $this->_getTmpDirUnix() . DIRECTORY_SEPARATOR . 'zend_cache_master';
+            $this->_masterFile  = $this->_getTmpDirUnix() . DIRECTORY_SEPARATOR . 'zend_cache_master';
             $this->_masterFile1 = $this->_getTmpDirUnix() . DIRECTORY_SEPARATOR . 'zend_cache_master1';
             $this->_masterFile2 = $this->_getTmpDirUnix() . DIRECTORY_SEPARATOR . 'zend_cache_master2';
         }
         if (!$this->_instance1) {
             touch($this->_masterFile, 123455);
             $this->_instance1 = new Zend_Cache_Frontend_File(array('master_file' => $this->_masterFile));
-            $this->_backend = new Zend_Cache_Backend_Test();
+            $this->_backend   = new Zend_Cache_Backend_Test();
             $this->_instance1->setBackend($this->_backend);
         }
         if (!$this->_instance2) {
             touch($this->_masterFile);
             $this->_instance2 = new Zend_Cache_Frontend_File(array('master_file' => $this->_masterFile));
-            $this->_backend = new Zend_Cache_Backend_Test();
+            $this->_backend   = new Zend_Cache_Backend_Test();
             $this->_instance2->setBackend($this->_backend);
         }
         if (!$this->_instance3) {
@@ -81,8 +81,10 @@ class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase {
         if (!$this->_instance4) {
             touch($this->_masterFile1);
             touch($this->_masterFile2);
-            $this->_instance4 = new Zend_Cache_Frontend_File(array('master_files' => array($this->_masterFile1, $this->_masterFile2)));
-            $this->_backend = new Zend_Cache_Backend_Test();
+            $this->_instance4 = new Zend_Cache_Frontend_File(
+                array('master_files' => array($this->_masterFile1, $this->_masterFile2))
+            );
+            $this->_backend   = new Zend_Cache_Backend_Test();
             $this->_instance4->setBackend($this->_backend);
         }
     }
@@ -137,7 +139,9 @@ class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase {
 
     public function testConstructorCorrectCall()
     {
-        $test = new Zend_Cache_Frontend_File(array('master_file' => $this->_masterFile, 'lifetime' => 3600, 'caching' => true));
+        $test = new Zend_Cache_Frontend_File(
+            array('master_file' => $this->_masterFile, 'lifetime' => 3600, 'caching' => true)
+        );
         $this->assertInstanceOf(Zend_Cache_Frontend_File::class, $test);
     }
 

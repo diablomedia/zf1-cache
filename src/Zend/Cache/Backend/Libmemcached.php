@@ -32,15 +32,15 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
     /**
      * Default Server Values
      */
-    const DEFAULT_HOST = '127.0.0.1';
-    const DEFAULT_PORT =  11211;
-    const DEFAULT_WEIGHT  = 1;
+    const DEFAULT_HOST   = '127.0.0.1';
+    const DEFAULT_PORT   = 11211;
+    const DEFAULT_WEIGHT = 1;
 
     /**
      * Log message
      */
     const TAGS_UNSUPPORTED_BY_CLEAN_OF_LIBMEMCACHED_BACKEND = 'Zend_Cache_Backend_Libmemcached::clean() : tags are unsupported by the Libmemcached backend';
-    const TAGS_UNSUPPORTED_BY_SAVE_OF_LIBMEMCACHED_BACKEND =  'Zend_Cache_Backend_Libmemcached::save() : tags are unsupported by the Libmemcached backend';
+    const TAGS_UNSUPPORTED_BY_SAVE_OF_LIBMEMCACHED_BACKEND  = 'Zend_Cache_Backend_Libmemcached::save() : tags are unsupported by the Libmemcached backend';
 
     /**
      * Available options
@@ -238,7 +238,9 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
                 return $this->_memcache->flush();
                 break;
             case Zend_Cache::CLEANING_MODE_OLD:
-                $this->_log("Zend_Cache_Backend_Libmemcached::clean() : CLEANING_MODE_OLD is unsupported by the Libmemcached backend");
+                $this->_log(
+                    'Zend_Cache_Backend_Libmemcached::clean() : CLEANING_MODE_OLD is unsupported by the Libmemcached backend'
+                );
                 break;
             case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
             case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
@@ -289,7 +291,9 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
      */
     public function getIds()
     {
-        $this->_log("Zend_Cache_Backend_Libmemcached::save() : getting the list of cache ids is unsupported by the Libmemcached backend");
+        $this->_log(
+            'Zend_Cache_Backend_Libmemcached::save() : getting the list of cache ids is unsupported by the Libmemcached backend'
+        );
         return array();
     }
 
@@ -404,8 +408,8 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
             $lifetime = $tmp[2];
             return array(
                 'expire' => $mtime + $lifetime,
-                'tags' => array(),
-                'mtime' => $mtime
+                'tags'   => array(),
+                'mtime'  => $mtime
             );
         }
 
@@ -423,11 +427,11 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
     {
         $tmp = $this->_memcache->get($id);
         if (isset($tmp[0], $tmp[1], $tmp[2])) {
-            $data     = $tmp[0];
-            $mtime    = $tmp[1];
-            $lifetime = $tmp[2];
+            $data        = $tmp[0];
+            $mtime       = $tmp[1];
+            $lifetime    = $tmp[2];
             $newLifetime = $lifetime - (time() - $mtime) + $extraLifetime;
-            if ($newLifetime <=0) {
+            if ($newLifetime <= 0) {
                 return false;
             }
             // #ZF-5702 : we try replace() first becase set() seems to be slower
@@ -462,12 +466,11 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
     {
         return array(
             'automatic_cleaning' => false,
-            'tags' => false,
-            'expired_read' => false,
-            'priority' => false,
-            'infinite_lifetime' => false,
-            'get_list' => false
+            'tags'               => false,
+            'expired_read'       => false,
+            'priority'           => false,
+            'infinite_lifetime'  => false,
+            'get_list'           => false
         );
     }
-
 }

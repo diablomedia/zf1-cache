@@ -29,8 +29,8 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase {
-
+class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
+{
     protected $_instance;
 
     public function __construct($name = null, array $data = array(), $dataName = '')
@@ -44,7 +44,7 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
             constant('TESTS_ZEND_CACHE_APC_ENABLED') === false) {
             $this->markTestSkipped('Tests are not enabled in TestConfiguration.php');
             return;
-        } else if (!extension_loaded('apc')) {
+        } elseif (!extension_loaded('apc')) {
             $this->markTestSkipped("Extension 'APC' is not loaded");
             return;
         }
@@ -70,7 +70,8 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
     /**
      * @doesNotPerformAssertions
      */
-    public function testCleanModeOld() {
+    public function testCleanModeOld()
+    {
         $this->_instance->setDirectives(array('logging' => false));
         $this->_instance->clean('old');
         // do nothing, just to see if an error occured
@@ -80,7 +81,8 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
     /**
      * @doesNotPerformAssertions
      */
-    public function testCleanModeMatchingTags() {
+    public function testCleanModeMatchingTags()
+    {
         $this->_instance->setDirectives(array('logging' => false));
         $this->_instance->clean('matchingTag', array('tag1'));
         // do nothing, just to see if an error occured
@@ -90,7 +92,8 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
     /**
      * @doesNotPerformAssertions
      */
-    public function testCleanModeNotMatchingTags() {
+    public function testCleanModeNotMatchingTags()
+    {
         $this->_instance->setDirectives(array('logging' => false));
         $this->_instance->clean('notMatchingTag', array('tag1'));
         // do nothing, just to see if an error occured
@@ -98,40 +101,52 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
     }
 
     // Because of limitations of this backend...
-    public function testGetWithAnExpiredCacheId() {
+    public function testGetWithAnExpiredCacheId()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testCleanModeMatchingTags2() {
+    public function testCleanModeMatchingTags2()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testCleanModeNotMatchingTags2() {
+    public function testCleanModeNotMatchingTags2()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testCleanModeNotMatchingTags3() {
+    public function testCleanModeNotMatchingTags3()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testGetIdsMatchingTags() {
+    public function testGetIdsMatchingTags()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testGetIdsMatchingTags2() {
+    public function testGetIdsMatchingTags2()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testGetIdsMatchingTags3() {
+    public function testGetIdsMatchingTags3()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testGetIdsMatchingTags4() {
+    public function testGetIdsMatchingTags4()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testGetIdsNotMatchingTags() {
+    public function testGetIdsNotMatchingTags()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testGetIdsNotMatchingTags2() {
+    public function testGetIdsNotMatchingTags2()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testGetIdsNotMatchingTags3() {
+    public function testGetIdsNotMatchingTags3()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testGetTags() {
+    public function testGetTags()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
 
@@ -151,7 +166,6 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
 
     public function testSaveWithSpecificLifeTime()
     {
-
         $this->_instance->setDirectives(array('logging' => false));
         parent::testSaveWithSpecificLifeTime();
         $this->_instance->setDirectives(array('logging' => true));
@@ -161,5 +175,4 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
     {
         parent::testGetMetadatas($notag);
     }
-
 }

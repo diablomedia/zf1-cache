@@ -9,8 +9,8 @@
  * @package    Zend_Cache
  * @subpackage UnitTests
  */
-class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase {
-
+class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase
+{
     protected $_instance;
     protected $_instance2;
     protected $_cache_dir;
@@ -26,15 +26,20 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase {
     {
         $this->mkdir();
         $this->_cache_dir = $this->mkdir();
-        @mkdir($this->_cache_dir.'/tags');
+        @mkdir($this->_cache_dir . '/tags');
 
-        $this->_innerCache = Zend_Cache::factory('Core','File',
-            array('automatic_serialization'=>true), array('cache_dir'=>$this->_cache_dir.'/tags')
+        $this->_innerCache = Zend_Cache::factory(
+            'Core',
+            'File',
+            array('automatic_serialization' => true),
+            array('cache_dir'               => $this->_cache_dir . '/tags')
         );
-        $this->_instance = new Zend_Cache_Backend_Static(array(
+        $this->_instance = new Zend_Cache_Backend_Static(
+            array(
             'public_dir' => $this->_cache_dir,
-            'tag_cache' => $this->_innerCache
-        ));
+            'tag_cache'  => $this->_innerCache
+            )
+        );
 
         $logger = new Zend_Log(new Zend_Log_Writer_Null());
         $this->_instance->setDirectives(array('logger' => $logger));
@@ -75,7 +80,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase {
 
     public function testOptionsSetTagCache()
     {
-        $test = new Zend_Cache_Backend_Static(array('tag_cache'=>$this->_innerCache));
+        $test = new Zend_Cache_Backend_Static(array('tag_cache' => $this->_innerCache));
         $this->assertTrue($test->getInnerCache() instanceof Zend_Cache_Core);
     }
 
@@ -269,7 +274,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase {
     public function testRemoveRecursively()
     {
         @mkdir($this->_cache_dir . '/issues/zf10558', 0777, true);
-        $id = '/issues/zf10558';
+        $id       = '/issues/zf10558';
         $pathFile = $this->_cache_dir . $id . '/index.html';
         file_put_contents($pathFile, '<strong>foo</strong>');
 
@@ -312,15 +317,14 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase {
     public function getTmpDir($date = true)
     {
         $suffix = '';
-        $tmp = sys_get_temp_dir();
+        $tmp    = sys_get_temp_dir();
         if ($date) {
             $suffix = date('mdyHis');
         }
         if (is_writeable($tmp)) {
             return $tmp . DIRECTORY_SEPARATOR . 'zend_cache_tmp_dir_' . $suffix;
         } else {
-            throw new Exception("no writable tmpdir found");
+            throw new Exception('no writable tmpdir found');
         }
     }
-
 }

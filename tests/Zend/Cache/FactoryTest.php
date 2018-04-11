@@ -20,11 +20,19 @@
  * @version    $Id$
  */
 
-class Zend_Cache_Backend_FooBarTest extends Zend_Cache_Backend_File { }
-class FooBarTestBackend extends Zend_Cache_Backend_File { }
+class Zend_Cache_Backend_FooBarTest extends Zend_Cache_Backend_File
+{
+}
+class FooBarTestBackend extends Zend_Cache_Backend_File
+{
+}
 
-class Zend_Cache_Frontend_FooBarTest extends Zend_Cache_Core { }
-class FooBarTestFrontend extends Zend_Cache_Core { }
+class Zend_Cache_Frontend_FooBarTest extends Zend_Cache_Core
+{
+}
+class FooBarTestFrontend extends Zend_Cache_Core
+{
+}
 
 /**
  * @category   Zend
@@ -36,7 +44,6 @@ class FooBarTestFrontend extends Zend_Cache_Core { }
  */
 class Zend_Cache_FactoryTest extends PHPUnit\Framework\TestCase
 {
-
     public function setUp()
     {
     }
@@ -109,7 +116,7 @@ class Zend_Cache_FactoryTest extends PHPUnit\Framework\TestCase
         try {
             Zend_Cache::factory('ZF11988\Frontend', 'File', array(), array(), true, false, false);
             $this->fail('Zend_Cache_Exception was expected but not thrown');
-        } catch ( Zend_Cache_Exception $e ) {
+        } catch (Zend_Cache_Exception $e) {
             $this->assertNotEquals('Invalid frontend name [ZF11988\Frontend]', $e->getMessage());
         }
     }
@@ -122,9 +129,8 @@ class Zend_Cache_FactoryTest extends PHPUnit\Framework\TestCase
         try {
             Zend_Cache::factory('Output', 'ZF11988\Backend', array(), array(), false, true, false);
             $this->fail('Zend_Cache_Exception was expected but not thrown');
-        } catch ( Zend_Cache_Exception $e ) {
+        } catch (Zend_Cache_Exception $e) {
             $this->assertNotEquals('Invalid backend name [ZF11988\Backend]', $e->getMessage());
         }
     }
-
 }

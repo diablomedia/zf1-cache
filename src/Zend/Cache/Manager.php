@@ -90,7 +90,7 @@ class Zend_Cache_Manager
                 'name'    => 'Core',
                 'options' => array(
                     'automatic_serialization' => true,
-                    'lifetime' => null
+                    'lifetime'                => null
                 ),
             ),
             'backend' => array(
@@ -200,8 +200,10 @@ class Zend_Cache_Manager
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (!is_array($options)) {
-            throw new Zend_Cache_Exception('Options passed must be in'
-                . ' an associative array or instance of Zend_Config');
+            throw new Zend_Cache_Exception(
+                'Options passed must be in'
+                . ' an associative array or instance of Zend_Config'
+            );
         }
         $this->_optionTemplates[$name] = $options;
         return $this;
@@ -249,12 +251,16 @@ class Zend_Cache_Manager
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (!is_array($options)) {
-            throw new Zend_Cache_Exception('Options passed must be in'
-                . ' an associative array or instance of Zend_Config');
+            throw new Zend_Cache_Exception(
+                'Options passed must be in'
+                . ' an associative array or instance of Zend_Config'
+            );
         }
         if (!isset($this->_optionTemplates[$name])) {
-            throw new Zend_Cache_Exception('A cache configuration template'
-                . 'does not exist with the name "' . $name . '"');
+            throw new Zend_Cache_Exception(
+                'A cache configuration template'
+                . 'does not exist with the name "' . $name . '"'
+            );
         }
         $this->_optionTemplates[$name]
             = $this->_mergeOptions($this->_optionTemplates[$name], $options);

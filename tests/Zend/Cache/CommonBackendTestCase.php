@@ -29,8 +29,8 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCase {
-
+abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCase
+{
     protected $_instance;
     protected $_className;
     protected $_root;
@@ -38,7 +38,7 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
     public function __construct($name = null, array $data = array(), $dataName = '')
     {
         $this->_className = $name;
-        $this->_root = dirname(__FILE__);
+        $this->_root      = dirname(__FILE__);
         date_default_timezone_set('UTC');
         parent::__construct($name, $data, $dataName);
     }
@@ -83,10 +83,10 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
         if (is_writeable($this->_root)) {
             return $this->_root . DIRECTORY_SEPARATOR . 'zend_cache_tmp_dir_' . $suffix;
         } else {
-            if (getenv('TMPDIR')){
+            if (getenv('TMPDIR')) {
                 return getenv('TMPDIR') . DIRECTORY_SEPARATOR . 'zend_cache_tmp_dir_' . $suffix;
             } else {
-                die("no writable tmpdir found");
+                die('no writable tmpdir found');
             }
         }
     }
@@ -108,7 +108,7 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
     {
         $this->expectException(Zend_Cache_Exception::class);
         $class = $this->_className;
-        $test = new $class(array(1 => 'bar'));
+        $test  = new $class(array(1 => 'bar'));
     }
 
     /**

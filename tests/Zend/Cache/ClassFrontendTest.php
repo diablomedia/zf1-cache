@@ -53,7 +53,8 @@ class test
         echo $this->dummyMethod($param1, $param2);
     }
 
-    private function dummyMethod($param1, $param2) {
+    private function dummyMethod($param1, $param2)
+    {
         return "foobar_output($param1,$param2)";
     }
 
@@ -84,7 +85,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
                 'cached_entity' => 'test'
             );
             $this->_instance1 = new Zend_Cache_Frontend_Class($options1);
-            $this->_backend1 = new Zend_Cache_Backend_Test();
+            $this->_backend1  = new Zend_Cache_Backend_Test();
             $this->_instance1->setBackend($this->_backend1);
         }
         if (!$this->_instance2) {
@@ -92,7 +93,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
                 'cached_entity' => new test()
             );
             $this->_instance2 = new Zend_Cache_Frontend_Class($options2);
-            $this->_backend2 = new Zend_Cache_Backend_Test();
+            $this->_backend2  = new Zend_Cache_Backend_Test();
             $this->_instance2->setBackend($this->_backend2);
         }
     }
@@ -110,7 +111,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
     {
         $options = array(
             'cache_by_default' => false,
-            'cached_entity' => 'test'
+            'cached_entity'    => 'test'
         );
         $test = new Zend_Cache_Frontend_Class($options);
     }
@@ -122,7 +123,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
     {
         $options = array(
             'cache_by_default' => false,
-            'cached_entity' => new test()
+            'cached_entity'    => new test()
         );
         $test = new Zend_Cache_Frontend_Class($options);
     }
@@ -131,7 +132,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
     {
         $options = array(
             'cached_entity' => new test(),
-            0 => true,
+            0               => true,
         );
         $this->expectException(Zend_Cache_Exception::class);
         $test = new Zend_Cache_Frontend_Class($options);
@@ -142,7 +143,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         ob_start();
         ob_implicit_flush(false);
         $return = $this->_instance1->foobar('param1', 'param2');
-        $data = ob_get_clean();
+        $data   = ob_get_clean();
         ob_implicit_flush(true);
         $this->assertEquals('bar', $return);
         $this->assertEquals('foo', $data);
@@ -153,7 +154,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         ob_start();
         ob_implicit_flush(false);
         $return = $this->_instance1->foobar('param3', 'param4');
-        $data = ob_get_clean();
+        $data   = ob_get_clean();
         ob_implicit_flush(true);
         $this->assertEquals('foobar_return(param3, param4)', $return);
         $this->assertEquals('foobar_output(param3, param4)', $data);
@@ -164,7 +165,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         ob_start();
         ob_implicit_flush(false);
         $return = $this->_instance2->foobar2('param1', 'param2');
-        $data = ob_get_clean();
+        $data   = ob_get_clean();
         ob_implicit_flush(true);
         $this->assertEquals('bar', $return);
         $this->assertEquals('foo', $data);
@@ -175,7 +176,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         ob_start();
         ob_implicit_flush(false);
         $return = $this->_instance2->foobar2('param3', 'param4');
-        $data = ob_get_clean();
+        $data   = ob_get_clean();
         ob_implicit_flush(true);
         $this->assertEquals('foobar2_return(param3, param4)', $return);
         $this->assertEquals('hello !foobar2_output(param3, param4)', $data);
@@ -188,7 +189,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         ob_start();
         ob_implicit_flush(false);
         $return = $this->_instance1->foobar('param1', 'param2');
-        $data = ob_get_clean();
+        $data   = ob_get_clean();
         ob_implicit_flush(true);
         $this->assertEquals('foobar_return(param1, param2)', $return);
         $this->assertEquals('foobar_output(param1, param2)', $data);
@@ -203,7 +204,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         ob_start();
         ob_implicit_flush(false);
         $return = $this->_instance1->foobar('param1', 'param2');
-        $data = ob_get_clean();
+        $data   = ob_get_clean();
         ob_implicit_flush(true);
         $this->assertEquals('bar', $return);
         $this->assertEquals('foo', $data);
@@ -218,7 +219,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         ob_start();
         ob_implicit_flush(false);
         $return = $this->_instance1->foobar('param1', 'param2');
-        $data = ob_get_clean();
+        $data   = ob_get_clean();
         ob_implicit_flush(true);
         $this->assertEquals('foobar_return(param1, param2)', $return);
         $this->assertEquals('foobar_output(param1, param2)', $data);
@@ -234,12 +235,11 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         ob_start();
         ob_implicit_flush(false);
         $return = $this->_instance2->foobar3('param1', 'param2');
-        $data = ob_get_clean();
+        $data   = ob_get_clean();
         ob_implicit_flush(true);
 
         $this->assertNull($return);
         $this->assertEquals('foobar_output(param1,param2)', $data);
-
     }
 
     public function testConstructorWithABadCachedEntity()
@@ -258,7 +258,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
     public function testCallingConstructorWithInvalidOptionShouldNotRaiseException()
     {
         $options = array(
-            'cached_entity' => new test(),
+            'cached_entity'           => new test(),
             'this_key_does_not_exist' => true
         );
         $test = new Zend_Cache_Frontend_Class($options);
@@ -275,8 +275,9 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         echo 'start';
         try {
             $this->_instance2->throwException();
-            $this->fail("An exception should be thrown");
-        } catch (Exception $e) {}
+            $this->fail('An exception should be thrown');
+        } catch (Exception $e) {
+        }
         echo 'end';
 
         $output = ob_get_clean();

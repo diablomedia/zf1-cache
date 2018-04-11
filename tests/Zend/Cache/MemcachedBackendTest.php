@@ -29,10 +29,10 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTestCase {
-
+class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
+{
     protected $_instance;
-    protected $skipped;
+    protected $_skipped;
 
     public function __construct($name = null, array $data = array(), $dataName = '')
     {
@@ -43,11 +43,11 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
     {
         if (!defined('TESTS_ZEND_CACHE_MEMCACHED_ENABLED') ||
             constant('TESTS_ZEND_CACHE_MEMCACHED_ENABLED') === false) {
-            $this->skipped = true;
+            $this->_skipped = true;
             $this->markTestSkipped('Tests are not enabled in TestConfiguration.php');
             return;
-        } else if (!extension_loaded('memcache')) {
-            $this->skipped = true;
+        } elseif (!extension_loaded('memcache')) {
+            $this->_skipped = true;
             $this->markTestSkipped("Extension 'memcache' is not loaded");
             return;
         } else {
@@ -62,20 +62,20 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
             }
         }
 
-        if(!class_exists('Memcached')) {
-            $this->skipped = true;
+        if (!class_exists('Memcached')) {
+            $this->_skipped = true;
             $this->markTestSkipped('Memcached is not installed, skipping test');
             return;
         }
 
         $serverValid = array(
-            'host' => TESTS_ZEND_CACHE_MEMCACHED_HOST,
-            'port' => TESTS_ZEND_CACHE_MEMCACHED_PORT,
+            'host'       => TESTS_ZEND_CACHE_MEMCACHED_HOST,
+            'port'       => TESTS_ZEND_CACHE_MEMCACHED_PORT,
             'persistent' => TESTS_ZEND_CACHE_MEMCACHED_PERSISTENT
         );
         $serverFail = array(
-            'host' => 'not.exist',
-            'port' => TESTS_ZEND_CACHE_MEMCACHED_PORT,
+            'host'       => 'not.exist',
+            'port'       => TESTS_ZEND_CACHE_MEMCACHED_PORT,
             'persistent' => TESTS_ZEND_CACHE_MEMCACHED_PERSISTENT
         );
         $options = array(
@@ -89,7 +89,7 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
     {
         parent::tearDown();
         unset($this->_instance);
-        if ($this->skipped === false) {
+        if ($this->_skipped === false) {
             // We have to wait after a memcache flush
             sleep(1);
         }
@@ -133,8 +133,8 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
     public function testConstructorWithAnAlternativeSyntax()
     {
         $server = array(
-            'host' => TESTS_ZEND_CACHE_MEMCACHED_HOST,
-            'port' => TESTS_ZEND_CACHE_MEMCACHED_PORT,
+            'host'       => TESTS_ZEND_CACHE_MEMCACHED_HOST,
+            'port'       => TESTS_ZEND_CACHE_MEMCACHED_PORT,
             'persistent' => TESTS_ZEND_CACHE_MEMCACHED_PERSISTENT
         );
         $options = array(
@@ -145,10 +145,18 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
     }
 
     // Because of limitations of this backend...
-    public function testGetWithAnExpiredCacheId() {}
-    public function testCleanModeMatchingTags2() {}
-    public function testCleanModeNotMatchingTags2() {}
-    public function testCleanModeNotMatchingTags3() {}
+    public function testGetWithAnExpiredCacheId()
+    {
+    }
+    public function testCleanModeMatchingTags2()
+    {
+    }
+    public function testCleanModeNotMatchingTags2()
+    {
+    }
+    public function testCleanModeNotMatchingTags3()
+    {
+    }
     public function testSaveCorrectCall()
     {
         $this->_instance->setDirectives(array('logging' => false));
@@ -165,7 +173,6 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
 
     public function testSaveWithSpecificLifeTime()
     {
-
         $this->_instance->setDirectives(array('logging' => false));
         parent::testSaveWithSpecificLifeTime();
         $this->_instance->setDirectives(array('logging' => true));
@@ -187,5 +194,4 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         $this->_instance->setDirectives(array('logging' => false));
         parent::testGetFillingPercentageOnEmptyBackend();
     }
-
 }

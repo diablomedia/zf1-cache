@@ -44,8 +44,8 @@ class Zend_Cache_Frontend_Function extends Zend_Cache_Core
      * @var array options
      */
     protected $_specificOptions = array(
-        'cache_by_default' => true,
-        'cached_functions' => array(),
+        'cache_by_default'     => true,
+        'cached_functions'     => array(),
         'non_cached_functions' => array()
     );
 
@@ -69,12 +69,19 @@ class Zend_Cache_Frontend_Function extends Zend_Cache_Core
      * @param  callable $callback         A valid callback
      * @param  array    $parameters       Function parameters
      * @param  array    $tags             Cache tags
-     * @param  int      $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
-     * @param  int      $priority         integer between 0 (very low priority) and 10 (maximum priority) used by some particular backends
+     * @param  int      $specificLifetime If != false, set a specific lifetime for this cache record
+     *                                    (null => infinite lifetime)
+     * @param  int      $priority         integer between 0 (very low priority) and 10 (maximum priority)
+     *                                    used by some particular backends
      * @return mixed Result
      */
-    public function call($callback, array $parameters = array(), $tags = array(), $specificLifetime = false, $priority = 8)
-    {
+    public function call(
+        $callback,
+        array $parameters = array(),
+        $tags = array(),
+        $specificLifetime = false,
+        $priority = 8
+    ) {
         if (!is_callable($callback, true, $name)) {
             Zend_Cache::throwException('Invalid callback');
         }
@@ -82,14 +89,14 @@ class Zend_Cache_Frontend_Function extends Zend_Cache_Core
         $cacheBool1 = $this->_specificOptions['cache_by_default'];
         $cacheBool2 = in_array($name, $this->_specificOptions['cached_functions']);
         $cacheBool3 = in_array($name, $this->_specificOptions['non_cached_functions']);
-        $cache = (($cacheBool1 || $cacheBool2) && (!$cacheBool3));
+        $cache      = (($cacheBool1 || $cacheBool2) && (!$cacheBool3));
         if (!$cache) {
             // Caching of this callback is disabled
             return call_user_func_array($callback, $parameters);
         }
 
         $id = $this->_makeId($callback, $parameters);
-        if ( ($rs = $this->load($id)) && isset($rs[0], $rs[1])) {
+        if (($rs = $this->load($id)) && isset($rs[0], $rs[1])) {
             // A cache is available
             $output = $rs[0];
             $return = $rs[1];
@@ -99,7 +106,7 @@ class Zend_Cache_Frontend_Function extends Zend_Cache_Core
             ob_implicit_flush(false);
             $return = call_user_func_array($callback, $parameters);
             $output = ob_get_clean();
-            $data = array($output, $return);
+            $data   = array($output, $return);
             $this->save($data, $id, $tags, $specificLifetime, $priority);
         }
 
@@ -150,7 +157,7 @@ class Zend_Cache_Frontend_Function extends Zend_Cache_Core
                 $lastErr = error_get_last();
                 Zend_Cache::throwException("Can't serialize callback object to generate id: {$lastErr['message']}");
             }
-            $name.= '__' . $tmp;
+            $name .= '__' . $tmp;
         }
 
         // generate a unique id for arguments
@@ -169,5 +176,4 @@ class Zend_Cache_Frontend_Function extends Zend_Cache_Core
 
         return md5($name . $argsStr);
     }
-
 }

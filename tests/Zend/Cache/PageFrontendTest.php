@@ -29,15 +29,15 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase {
-
+class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase
+{
     private $_instance;
 
     public function setUp()
     {
         if (!$this->_instance) {
             $this->_instance = new Zend_Cache_Frontend_Page(array());
-            $this->_backend = new Zend_Cache_Backend_Test();
+            $this->_backend  = new Zend_Cache_Backend_Test();
             $this->_instance->setBackend($this->_backend);
         }
     }
@@ -95,12 +95,12 @@ class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase {
     public function testConstructorWithBadRegexps3()
     {
         $array = array(
-           '^/$' => array('cache' => true),
-           '^/index/' => array('cache' => true),
-           '^/article/' => array('cache' => false),
+           '^/$'             => array('cache' => true),
+           '^/index/'        => array('cache' => true),
+           '^/article/'      => array('cache' => false),
            '^/article/view/' => array(
-               1 => true,
-               'cache_with_post_variables' => true,
+               1                             => true,
+               'cache_with_post_variables'   => true,
                'make_id_with_post_variables' => true,
            )
         );
@@ -111,12 +111,12 @@ class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase {
     public function testConstructorWithGoodRegexps()
     {
         $array = array(
-           '^/$' => array('cache' => true),
-           '^/index/' => array('cache' => true),
-           '^/article/' => array('cache' => false),
+           '^/$'             => array('cache' => true),
+           '^/index/'        => array('cache' => true),
+           '^/article/'      => array('cache' => false),
            '^/article/view/' => array(
-               'cache' => true,
-               'cache_with_post_variables' => true,
+               'cache'                       => true,
+               'cache_with_post_variables'   => true,
                'make_id_with_post_variables' => true,
            )
         );
@@ -185,4 +185,3 @@ class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase {
         ob_get_clean();
     }
 }
-

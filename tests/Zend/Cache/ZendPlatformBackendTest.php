@@ -29,8 +29,8 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_ZendPlatformBackendTest extends Zend_Cache_CommonBackendTestCase {
-
+class Zend_Cache_ZendPlatformBackendTest extends Zend_Cache_CommonBackendTestCase
+{
     protected $_instance;
 
     public function __construct($name = null, array $data = array(), $dataName = '')
@@ -44,12 +44,12 @@ class Zend_Cache_ZendPlatformBackendTest extends Zend_Cache_CommonBackendTestCas
             constant('TESTS_ZEND_CACHE_PLATFORM_ENABLED') === false) {
             $this->markTestSkipped('Tests are not enabled in TestConfiguration.php');
             return;
-        } else if (!function_exists('accelerator_license_info')) {
+        } elseif (!function_exists('accelerator_license_info')) {
             $this->markTestSkipped('Extension for Zend Platform is not loaded');
             return;
         }
 
-        if(!function_exists('output_cache_get')) {
+        if (!function_exists('output_cache_get')) {
             $this->markTestSkipped('Zend Platform is not installed, skipping test');
             return;
         }
@@ -78,7 +78,7 @@ class Zend_Cache_ZendPlatformBackendTest extends Zend_Cache_CommonBackendTestCas
 
     public function testGetWithAnExpiredCacheId()
     {
-    sleep(2);
+        sleep(2);
         $this->_instance->setDirectives(array('lifetime' => 1));
         $this->assertEquals('bar : data to cache', $this->_instance->load('bar', true));
         $this->assertFalse($this->_instance->load('bar'));
@@ -86,8 +86,16 @@ class Zend_Cache_ZendPlatformBackendTest extends Zend_Cache_CommonBackendTestCas
     }
 
     // Because of limitations of this backend...
-    public function testCleanModeNotMatchingTags2() {}
-    public function testCleanModeNotMatchingTags3() {}
-    public function testCleanModeOld() {}
-    public function testCleanModeNotMatchingTags() {}
+    public function testCleanModeNotMatchingTags2()
+    {
+    }
+    public function testCleanModeNotMatchingTags3()
+    {
+    }
+    public function testCleanModeOld()
+    {
+    }
+    public function testCleanModeNotMatchingTags()
+    {
+    }
 }

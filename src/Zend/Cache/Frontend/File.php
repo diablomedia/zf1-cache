@@ -58,9 +58,9 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
      * @var array available options
      */
     protected $_specificOptions = array(
-        'master_file' => null,
-        'master_files' => null,
-        'master_files_mode' => 'OR',
+        'master_file'                 => null,
+        'master_files'                => null,
+        'master_files_mode'           => 'OR',
         'ignore_missing_master_files' => false
     );
 
@@ -99,7 +99,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
     {
         $this->_specificOptions['master_file']  = null; // to keep a compatibility
         $this->_specificOptions['master_files'] = null;
-        $this->_masterFile_mtimes = array();
+        $this->_masterFile_mtimes               = array();
 
         clearstatcache();
         $i = 0;
@@ -114,7 +114,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
                 Zend_Cache::throwException('Unable to read master_file : ' . $masterFile);
             }
 
-            $this->_masterFile_mtimes[$i] = $mtime;
+            $this->_masterFile_mtimes[$i]               = $mtime;
             $this->_specificOptions['master_files'][$i] = $masterFile;
             if ($i === 0) { // to keep a compatibility
                 $this->_specificOptions['master_file'] = $masterFile;
@@ -134,7 +134,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
      */
     public function setMasterFile($masterFile)
     {
-          $this->setMasterFiles(array($masterFile));
+        $this->setMasterFiles(array($masterFile));
     }
 
     /**
@@ -151,7 +151,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
     {
         if ($name == 'master_file') {
             $this->setMasterFile($value);
-        } else if ($name == 'master_files') {
+        } elseif ($name == 'master_files') {
             $this->setMasterFiles($value);
         } else {
             parent::setOption($name, $value);
@@ -163,7 +163,8 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
      *
      * @param  string  $id                     Cache id
      * @param  boolean $doNotTestCacheValidity If set to true, the cache validity won't be tested
-     * @param  boolean $doNotUnserialize       Do not serialize (even if automatic_serialization is true) => for internal use
+     * @param  boolean $doNotUnserialize       Do not serialize (even if automatic_serialization is true)
+     *                                         => for internal use
      * @return mixed|false Cached datas
      */
     public function load($id, $doNotTestCacheValidity = false, $doNotUnserialize = false)
@@ -189,7 +190,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
         if ($lastModified) {
             if ($this->_specificOptions['master_files_mode'] == self::MODE_AND) {
                 // MODE_AND
-                foreach($this->_masterFile_mtimes as $masterFileMTime) {
+                foreach ($this->_masterFile_mtimes as $masterFileMTime) {
                     if ($masterFileMTime) {
                         if ($lastModified > $masterFileMTime) {
                             return $lastModified;
@@ -199,7 +200,7 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
             } else {
                 // MODE_OR
                 $res = true;
-                foreach($this->_masterFile_mtimes as $masterFileMTime) {
+                foreach ($this->_masterFile_mtimes as $masterFileMTime) {
                     if ($masterFileMTime) {
                         if ($lastModified <= $masterFileMTime) {
                             return false;
@@ -211,6 +212,4 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
         }
         return false;
     }
-
 }
-

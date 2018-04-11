@@ -29,8 +29,8 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCase {
-
+class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
+{
     protected $_instance;
     protected $_instance2;
     protected $_cache_dir;
@@ -42,11 +42,13 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCas
 
     public function setUp($notag = false)
     {
-        $tmpDir = $this->mkdir();
+        $tmpDir           = $this->mkdir();
         $this->_cache_dir = $tmpDir . DIRECTORY_SEPARATOR;
-        $this->_instance = new Zend_Cache_Backend_File(array(
+        $this->_instance  = new Zend_Cache_Backend_File(
+            array(
             'cache_dir' => $this->_cache_dir,
-        ));
+            )
+        );
 
         $logger = new Zend_Log(new Zend_Log_Writer_Null());
         $this->_instance->setDirectives(array('logger' => $logger));
@@ -63,11 +65,13 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCas
     public function testSetDeprecatedHashedDirectoryUmask()
     {
         try {
-            $cache = new Zend_Cache_Backend_File(array(
+            $cache = new Zend_Cache_Backend_File(
+                array(
                 'cache_dir'              => $this->_cache_dir,
                 'hashed_directory_umask' => 0700,
-            ));
-            $this->fail("Missing expected E_USER_NOTICE error");
+                )
+            );
+            $this->fail('Missing expected E_USER_NOTICE error');
         } catch (PHPUnit\Framework\Error\Error $e) {
             if ($e->getCode() != E_USER_NOTICE) {
                 throw $e;
@@ -80,11 +84,13 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCas
     public function testSetDeprecatedCacheFileUmask()
     {
         try {
-            $cache = new Zend_Cache_Backend_File(array(
+            $cache = new Zend_Cache_Backend_File(
+                array(
                     'cache_dir'        => $this->_cache_dir,
                     'cache_file_umask' => 0700,
-            ));
-            $this->fail("Missing expected E_USER_NOTICE error");
+                )
+            );
+            $this->fail('Missing expected E_USER_NOTICE error');
         } catch (PHPUnit\Framework\Error\Error $e) {
             if ($e->getCode() != E_USER_NOTICE) {
                 throw $e;
@@ -105,9 +111,11 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCas
     public function testConstructorWithABadFileNamePrefix()
     {
         $this->expectException(Zend_Cache_Exception::class);
-        $class = new Zend_Cache_Backend_File(array(
+        $class = new Zend_Cache_Backend_File(
+            array(
             'file_name_prefix' => 'foo bar'
-        ));
+            )
+        );
     }
 
     public function testGetWithANonExistingCacheIdAndANullLifeTime()

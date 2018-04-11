@@ -29,10 +29,10 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTestCase {
-
+class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
+{
     protected $_instance;
-    protected $skipped;
+    protected $_skipped;
 
     public function __construct($name = null, array $data = array(), $dataName = '')
     {
@@ -41,15 +41,15 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
 
     public function setUp($notag = true)
     {
-        $this->skipped = false;
+        $this->_skipped = false;
 
         if (!defined('TESTS_ZEND_CACHE_LIBMEMCACHED_ENABLED') ||
             constant('TESTS_ZEND_CACHE_LIBMEMCACHED_ENABLED') === false) {
-            $this->skipped = true;
+            $this->_skipped = true;
             $this->markTestSkipped('Tests are not enabled in TestConfiguration.php');
             return;
-        } else if (!extension_loaded('memcached')) {
-            $this->skipped = true;
+        } elseif (!extension_loaded('memcached')) {
+            $this->_skipped = true;
             $this->markTestSkipped("Extension 'Memcached' is not loaded");
             return;
         } else {
@@ -64,8 +64,8 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
             }
         }
 
-        if(!class_exists('Memcached')) {
-            $this->skipped = true;
+        if (!class_exists('Memcached')) {
+            $this->_skipped = true;
             $this->markTestSkipped('Memcached is not installed, skipping test');
             return;
         }
@@ -90,7 +90,7 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
     {
         parent::tearDown();
         $this->_instance = null;
-        if ($this->skipped === false) {
+        if ($this->_skipped === false) {
             // We have to wait after a memcached flush
             sleep(1);
         }
@@ -158,16 +158,20 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
     }
 
     // Because of limitations of this backend...
-    public function testGetWithAnExpiredCacheId() {
+    public function testGetWithAnExpiredCacheId()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testCleanModeMatchingTags2() {
+    public function testCleanModeMatchingTags2()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testCleanModeNotMatchingTags2() {
+    public function testCleanModeNotMatchingTags2()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
-    public function testCleanModeNotMatchingTags3() {
+    public function testCleanModeNotMatchingTags3()
+    {
         $this->markTestSkipped('Not supported by this backend');
     }
 
@@ -187,7 +191,6 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
 
     public function testSaveWithSpecificLifeTime()
     {
-
         $this->_instance->setDirectives(array('logging' => false));
         parent::testSaveWithSpecificLifeTime();
         $this->_instance->setDirectives(array('logging' => true));
@@ -209,5 +212,4 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
         $this->_instance->setDirectives(array('logging' => false));
         parent::testGetFillingPercentageOnEmptyBackend();
     }
-
 }

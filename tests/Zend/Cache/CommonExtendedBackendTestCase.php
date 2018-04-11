@@ -29,8 +29,8 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendTestCase {
-
+class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendTestCase
+{
     private $_capabilities;
 
     public function __construct($name = null, array $data = array(), $dataName = '')
@@ -197,7 +197,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
 
     public function testTouch()
     {
-        $res = $this->_instance->getMetadatas('bar');
+        $res  = $this->_instance->getMetadatas('bar');
         $bool = $this->_instance->touch('bar', 30);
         $this->assertTrue($bool);
         $res2 = $this->_instance->getMetadatas('bar');
@@ -215,7 +215,4 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
         $this->assertTrue(isset($res['infinite_lifetime']));
         $this->assertTrue(isset($res['get_list']));
     }
-
 }
-
-

@@ -29,8 +29,8 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTestCase {
-
+class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
+{
     protected $_instance;
 
     public function __construct($name = null, array $data = array(), $dataName = '')
@@ -44,7 +44,7 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
             constant('TESTS_ZEND_CACHE_WINCACHE_ENABLED') === false) {
             $this->markTestSkipped('Tests are not enabled in TestConfiguration.php');
             return;
-        } else if (!extension_loaded('wincache')) {
+        } elseif (!extension_loaded('wincache')) {
             $this->markTestSkipped("Extension 'wincache' is not loaded");
             return;
         }
@@ -64,21 +64,24 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
         $test = new Zend_Cache_Backend_WinCache();
     }
 
-    public function testCleanModeOld() {
+    public function testCleanModeOld()
+    {
         $this->_instance->setDirectives(array('logging' => false));
         $this->_instance->clean('old');
         // do nothing, just to see if an error occured
         $this->_instance->setDirectives(array('logging' => true));
     }
 
-    public function testCleanModeMatchingTags() {
+    public function testCleanModeMatchingTags()
+    {
         $this->_instance->setDirectives(array('logging' => false));
         $this->_instance->clean('matchingTag', array('tag1'));
         // do nothing, just to see if an error occured
         $this->_instance->setDirectives(array('logging' => true));
     }
 
-    public function testCleanModeNotMatchingTags() {
+    public function testCleanModeNotMatchingTags()
+    {
         $this->_instance->setDirectives(array('logging' => false));
         $this->_instance->clean('notMatchingTag', array('tag1'));
         // do nothing, just to see if an error occured
@@ -86,52 +89,64 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
     }
 
     // Because of limitations of this backend...
-    public function testGetWithAnExpiredCacheId() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testGetWithAnExpiredCacheId()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testCleanModeMatchingTags2() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testCleanModeMatchingTags2()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testCleanModeNotMatchingTags2() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testCleanModeNotMatchingTags2()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testCleanModeNotMatchingTags3() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testCleanModeNotMatchingTags3()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testGetIdsMatchingTags() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testGetIdsMatchingTags()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testGetIdsMatchingTags2() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testGetIdsMatchingTags2()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testGetIdsMatchingTags3() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testGetIdsMatchingTags3()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testGetIdsMatchingTags4() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testGetIdsMatchingTags4()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testGetIdsNotMatchingTags() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testGetIdsNotMatchingTags()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testGetIdsNotMatchingTags2() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testGetIdsNotMatchingTags2()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testGetIdsNotMatchingTags3() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testGetIdsNotMatchingTags3()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
-    public function testGetTags() {
-    	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
+    public function testGetTags()
+    {
+        $this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
     public function testSaveCorrectCall()
@@ -150,7 +165,6 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
 
     public function testSaveWithSpecificLifeTime()
     {
-
         $this->_instance->setDirectives(array('logging' => false));
         parent::testSaveWithSpecificLifeTime();
         $this->_instance->setDirectives(array('logging' => true));
@@ -160,5 +174,4 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
     {
         parent::testGetMetadatas($notag);
     }
-
 }

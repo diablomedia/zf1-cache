@@ -76,25 +76,25 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
      * @var array options
      */
     protected $_specificOptions = array(
-        'http_conditional' => false,
-        'debug_header' => false,
+        'http_conditional'          => false,
+        'debug_header'              => false,
         'content_type_memorization' => false,
-        'memorize_headers' => array(),
-        'default_options' => array(
-            'cache_with_get_variables' => false,
-            'cache_with_post_variables' => false,
-            'cache_with_session_variables' => false,
-            'cache_with_files_variables' => false,
-            'cache_with_cookie_variables' => false,
-            'make_id_with_get_variables' => true,
-            'make_id_with_post_variables' => true,
+        'memorize_headers'          => array(),
+        'default_options'           => array(
+            'cache_with_get_variables'       => false,
+            'cache_with_post_variables'      => false,
+            'cache_with_session_variables'   => false,
+            'cache_with_files_variables'     => false,
+            'cache_with_cookie_variables'    => false,
+            'make_id_with_get_variables'     => true,
+            'make_id_with_post_variables'    => true,
             'make_id_with_session_variables' => true,
-            'make_id_with_files_variables' => true,
-            'make_id_with_cookie_variables' => true,
-            'cache' => true,
-            'specific_lifetime' => false,
-            'tags' => array(),
-            'priority' => null
+            'make_id_with_files_variables'   => true,
+            'make_id_with_cookie_variables'  => true,
+            'cache'                          => true,
+            'specific_lifetime'              => false,
+            'tags'                           => array(),
+            'priority'                       => null
         ),
         'regexps' => array()
     );
@@ -158,7 +158,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         if (!is_array($options)) {
             Zend_Cache::throwException('default_options must be an array !');
         }
-        foreach ($options as $key=>$value) {
+        foreach ($options as $key => $value) {
             if (!is_string($key)) {
                 Zend_Cache::throwException("invalid option [$key] !");
             }
@@ -207,12 +207,12 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         if (!is_array($regexps)) {
             Zend_Cache::throwException('regexps option must be an array !');
         }
-        foreach ($regexps as $regexp=>$conf) {
+        foreach ($regexps as $regexp => $conf) {
             if (!is_array($conf)) {
                 Zend_Cache::throwException('regexps option must be an array of arrays !');
             }
             $validKeys = array_keys($this->_specificOptions['default_options']);
-            foreach ($conf as $key=>$value) {
+            foreach ($conf as $key => $value) {
                 if (!is_string($key)) {
                     Zend_Cache::throwException("unknown option [$key] !");
                 }
@@ -228,13 +228,14 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
     /**
      * Start the cache
      *
-     * @param  string  $id       (optional) A cache id (if you set a value here, maybe you have to use Output frontend instead)
+     * @param  string  $id (optional) A cache id
+     *                     (if you set a value here, maybe you have to use Output frontend instead)
      * @param  boolean $doNotDie For unit testing only !
      * @return boolean True if the cache is hit (false else)
      */
     public function start($id = false, $doNotDie = false)
     {
-        $this->_cancel = false;
+        $this->_cancel      = false;
         $lastMatchingRegexp = null;
         if (isset($_SERVER['REQUEST_URI'])) {
             foreach ($this->_specificOptions['regexps'] as $regexp => $conf) {
@@ -246,7 +247,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         $this->_activeOptions = $this->_specificOptions['default_options'];
         if ($lastMatchingRegexp !== null) {
             $conf = $this->_specificOptions['regexps'][$lastMatchingRegexp];
-            foreach ($conf as $key=>$value) {
+            foreach ($conf as $key => $value) {
                 $this->_activeOptions[$key] = $value;
             }
         }
@@ -261,11 +262,11 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         }
         $array = $this->load($id);
         if ($array !== false) {
-            $data = $array['data'];
+            $data    = $array['data'];
             $headers = $array['headers'];
             if (!headers_sent()) {
-                foreach ($headers as $key=>$headerCouple) {
-                    $name = $headerCouple[0];
+                foreach ($headers as $key => $headerCouple) {
+                    $name  = $headerCouple[0];
                     $value = $headerCouple[1];
                     header("$name: $value");
                 }
@@ -304,12 +305,12 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         if ($this->_cancel) {
             return $data;
         }
-        $contentType = null;
+        $contentType   = null;
         $storedHeaders = array();
-        $headersList = headers_list();
-        foreach($this->_specificOptions['memorize_headers'] as $key=>$headerName) {
+        $headersList   = headers_list();
+        foreach ($this->_specificOptions['memorize_headers'] as $key => $headerName) {
             foreach ($headersList as $headerSent) {
-                $tmp = explode(':', $headerSent);
+                $tmp            = explode(':', $headerSent);
                 $headerSentName = trim(array_shift($tmp));
                 if (strtolower($headerName) == strtolower($headerSentName)) {
                     $headerSentValue = trim(implode(':', $tmp));
@@ -318,10 +319,16 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
             }
         }
         $array = array(
-            'data' => $data,
+            'data'    => $data,
             'headers' => $storedHeaders
         );
-        $this->save($array, null, $this->_activeOptions['tags'], $this->_activeOptions['specific_lifetime'], $this->_activeOptions['priority']);
+        $this->save(
+            $array,
+            null,
+            $this->_activeOptions['tags'],
+            $this->_activeOptions['specific_lifetime'],
+            $this->_activeOptions['priority']
+        );
         return $data;
     }
 
@@ -332,12 +339,16 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
      */
     protected function _makeId()
     {
-        $tmp = $_SERVER['REQUEST_URI'];
+        $tmp   = $_SERVER['REQUEST_URI'];
         $array = explode('?', $tmp, 2);
-          $tmp = $array[0];
+        $tmp   = $array[0];
         foreach (array('Get', 'Post', 'Session', 'Files', 'Cookie') as $arrayName) {
-            $tmp2 = $this->_makePartialId($arrayName, $this->_activeOptions['cache_with_' . strtolower($arrayName) . '_variables'], $this->_activeOptions['make_id_with_' . strtolower($arrayName) . '_variables']);
-            if ($tmp2===false) {
+            $tmp2 = $this->_makePartialId(
+                $arrayName,
+                $this->_activeOptions['cache_with_' . strtolower($arrayName) . '_variables'],
+                $this->_activeOptions['make_id_with_' . strtolower($arrayName) . '_variables']
+            );
+            if ($tmp2 === false) {
                 return false;
             }
             $tmp = $tmp . $tmp2;
@@ -393,5 +404,4 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         }
         return '';
     }
-
 }

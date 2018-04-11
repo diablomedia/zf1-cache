@@ -37,7 +37,7 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
     {
         if (!$this->_instance) {
             $this->_instance = new Zend_Cache_Core(array());
-            $this->_backend = new Zend_Cache_Backend_Test();
+            $this->_backend  = new Zend_Cache_Backend_Test();
             $this->_instance->setBackend($this->_backend);
         }
     }
@@ -72,7 +72,7 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
     public function testSettingOptionsWithZendConfig()
     {
         $config = new Zend_Config(array('lifetime' => 3600, 'caching' => true));
-        $test = new Zend_Cache_Core();
+        $test   = new Zend_Cache_Core();
         $test->setConfig($config);
         $this->assertEquals(3600, $test->getOption('lifetime'));
     }
@@ -83,9 +83,9 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
     public function testSettingLifetimeAsEmptyIsInterpretedAsNull()
     {
         $config = new Zend_Config(array('lifetime' => '', 'caching' => true));
-        $test = new Zend_Cache_Core();
+        $test   = new Zend_Cache_Core();
         $test->setConfig($config);
-        $this->assertSame(NULL, $test->getOption('lifetime'));
+        $this->assertSame(null, $test->getOption('lifetime'));
     }
 
     public function testConstructorBadOption()
@@ -198,7 +198,7 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
         $i1 = $this->_backend->getLogIndex();
         $this->_instance->setOption('caching', false);
         $res = $this->_instance->save('data', 'foo');
-        $i2 = $this->_backend->getLogIndex();
+        $i2  = $this->_backend->getLogIndex();
         $this->assertTrue($res);
         $this->assertEquals($i1, $i2);
     }
@@ -206,11 +206,11 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
     public function testSaveCorrectCallNoWriteControl()
     {
         $this->_instance->setOption('write_control', false);
-        $res = $this->_instance->save('data', 'foo', array('tag1', 'tag2'));
-        $log = $this->_backend->getLastLog();
+        $res      = $this->_instance->save('data', 'foo', array('tag1', 'tag2'));
+        $log      = $this->_backend->getLastLog();
         $expected = array(
             'methodName' => 'save',
-            'args' => array(
+            'args'       => array(
                 0 => 'data',
                 1 => 'foo',
                 2 => array(
@@ -224,11 +224,11 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
 
     public function testSaveCorrectCall()
     {
-        $res = $this->_instance->save('data', 'foo', array('tag1', 'tag2'));
-        $logs = $this->_backend->getAllLogs();
+        $res       = $this->_instance->save('data', 'foo', array('tag1', 'tag2'));
+        $logs      = $this->_backend->getAllLogs();
         $expected1 = array(
             'methodName' => 'save',
-            'args' => array(
+            'args'       => array(
                 0 => 'data',
                 1 => 'foo',
                 2 => array(
@@ -239,14 +239,14 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
         );
         $expected2 = array(
             'methodName' => 'get',
-            'args' => array(
+            'args'       => array(
                 0 => 'foo',
                 1 => true
             )
         );
         $expected3 = array(
             'methodName' => 'remove',
-            'args' => array(
+            'args'       => array(
                 0 => 'foo'
             )
         );
@@ -260,11 +260,11 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
     {
         $cacheIdPrefix = 'cacheIdPrefix';
         $this->_instance->setOption('cache_id_prefix', $cacheIdPrefix);
-        $res = $this->_instance->save('data', 'false', array('tag1', 'tag2'));
-        $logs = $this->_backend->getAllLogs();
+        $res       = $this->_instance->save('data', 'false', array('tag1', 'tag2'));
+        $logs      = $this->_backend->getAllLogs();
         $expected1 = array(
             'methodName' => 'save',
-            'args' => array(
+            'args'       => array(
                 0 => 'data',
                 1 => $cacheIdPrefix . 'false',
                 2 => array(
@@ -275,8 +275,8 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
         );
         $expected2 = array(
             'methodName' => 'remove',
-            'args' => array(
-                0 => $cacheIdPrefix.'false'
+            'args'       => array(
+                0 => $cacheIdPrefix . 'false'
             )
         );
         $this->assertFalse($res);
@@ -287,11 +287,11 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
     public function testSaveCorrectCallWithAutomaticCleaning()
     {
         $this->_instance->setOption('automatic_cleaning_factor', 1);
-        $res = $this->_instance->save('data', 'false', array('tag1', 'tag2'));
-        $logs = $this->_backend->getAllLogs();
+        $res      = $this->_instance->save('data', 'false', array('tag1', 'tag2'));
+        $logs     = $this->_backend->getAllLogs();
         $expected = array(
             'methodName' => 'clean',
-            'args' => array(
+            'args'       => array(
                 0 => 'old',
                 1 => array()
             )
@@ -305,7 +305,7 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
         $i1 = $this->_backend->getLogIndex();
         $this->_instance->setOption('caching', false);
         $res = $this->_instance->test('foo');
-        $i2 = $this->_backend->getLogIndex();
+        $i2  = $this->_backend->getLogIndex();
         $this->assertFalse($res);
         $this->assertEquals($i1, $i2);
     }
@@ -318,22 +318,22 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
 
     public function testTestCorrectCall1()
     {
-         $res = $this->_instance->test('foo');
-         $log = $this->_backend->getLastLog();
-         $expected = array(
+        $res      = $this->_instance->test('foo');
+        $log      = $this->_backend->getLastLog();
+        $expected = array(
             'methodName' => 'test',
-            'args' => array(
+            'args'       => array(
                 0 => 'foo'
             )
          );
-         $this->assertEquals(123456, $res);
-         $this->assertEquals($expected, $log);
+        $this->assertEquals(123456, $res);
+        $this->assertEquals($expected, $log);
     }
 
     public function testTestCorrectCall2()
     {
-         $res = $this->_instance->test('false');
-         $this->assertFalse($res);
+        $res = $this->_instance->test('false');
+        $this->assertFalse($res);
     }
 
     public function testGetCorrectCallNoCaching()
@@ -341,7 +341,7 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
         $i1 = $this->_backend->getLogIndex();
         $this->_instance->setOption('caching', false);
         $res = $this->_instance->load('foo');
-        $i2 = $this->_backend->getLogIndex();
+        $i2  = $this->_backend->getLogIndex();
         $this->assertFalse($res);
         $this->assertEquals($i1, $i2);
     }
@@ -382,18 +382,18 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
         $i1 = $this->_backend->getLogIndex();
         $this->_instance->setOption('caching', false);
         $res = $this->_instance->remove('foo');
-        $i2 = $this->_backend->getLogIndex();
+        $i2  = $this->_backend->getLogIndex();
         $this->assertTrue($res);
         $this->assertEquals($i1, $i2);
     }
 
     public function testRemoveCorrectCall()
     {
-        $res = $this->_instance->remove('foo');
-        $log = $this->_backend->getLastLog();
+        $res      = $this->_instance->remove('foo');
+        $log      = $this->_backend->getLastLog();
         $expected = array(
             'methodName' => 'remove',
-            'args' => array(
+            'args'       => array(
                 0 => 'foo'
             )
         );
@@ -418,18 +418,18 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
         $i1 = $this->_backend->getLogIndex();
         $this->_instance->setOption('caching', false);
         $res = $this->_instance->clean('all');
-        $i2 = $this->_backend->getLogIndex();
+        $i2  = $this->_backend->getLogIndex();
         $this->assertTrue($res);
         $this->assertEquals($i1, $i2);
     }
 
     public function testCleanCorrectCall()
     {
-        $res = $this->_instance->clean('matchingTag', array('tag1', 'tag2'));
-        $log = $this->_backend->getLastLog();
+        $res      = $this->_instance->clean('matchingTag', array('tag1', 'tag2'));
+        $log      = $this->_backend->getLastLog();
         $expected = array(
             'methodName' => 'clean',
-            'args' => array(
+            'args'       => array(
                 0 => 'matchingTag',
                 1 => array(
                     0 => 'tag1',
@@ -475,9 +475,11 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
 
     public function testLoggerSanity()
     {
-        $this->_instance = new Zend_Cache_Core(array(
+        $this->_instance = new Zend_Cache_Core(
+            array(
             'logging' => true
-        ));
+            )
+        );
         $this->_instance->setBackend($this->_backend);
 
         $logger = $this->_instance->getOption('logger');
