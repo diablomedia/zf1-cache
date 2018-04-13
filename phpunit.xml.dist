@@ -7,6 +7,11 @@
     stderr="true"
     colors="true"
     bootstrap="./phpunit-bootstrap.php">
+    <testsuites>
+        <testsuite name="default">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>

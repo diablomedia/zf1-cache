@@ -1,6 +1,0 @@
-plugins:
-  phpcodesniffer:
-    enabled: true
-    config:
-      standard: "Zend"
-      ignore_warnings: true
