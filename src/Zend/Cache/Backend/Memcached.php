@@ -208,7 +208,7 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      * @param  string $data             Datas to cache
      * @param  string $id               Cache id
      * @param  array  $tags             Array of strings, the cache record will be tagged by each string entry
-     * @param  int    $specificLifetime If != false, set a specific lifetime for this cache record
+     * @param  false|int|null    $specificLifetime If != false, set a specific lifetime for this cache record
      *                                  (null => infinite lifetime)
      * @return boolean True if no problem
      */

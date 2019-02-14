@@ -224,7 +224,7 @@ class Zend_Cache_Frontend_Class extends Zend_Cache_Core
         } else {
             // A cache is not available (or not valid for this frontend)
             ob_start();
-            ob_implicit_flush(false);
+            ob_implicit_flush(0);
 
             try {
                 $return = call_user_func_array($callback, $parameters);

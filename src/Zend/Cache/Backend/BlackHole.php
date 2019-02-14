@@ -60,7 +60,7 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      * @param  string $data             Datas to cache
      * @param  string $id               Cache id
      * @param  array  $tags             Array of strings, the cache record will be tagged by each string entry
-     * @param  int    $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
+     * @param  false|int|null   $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
      * @return boolean true if no problem
      */
     public function save($data, $id, $tags = array(), $specificLifetime = false)

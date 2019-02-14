@@ -114,7 +114,7 @@ class Zend_Cache_Backend
      * Returns an option
      *
      * @param string $name Optional, the options name to return
-     * @throws Zend_Cache_Exceptions
+     * @throws Zend_Cache_Exception
      * @return mixed
      */
     public function getOption($name)
@@ -201,7 +201,7 @@ class Zend_Cache_Backend
             }
         }
         // Attemp to detect by creating a temporary file
-        $tempFile = tempnam(md5(uniqid(rand(), true)), '');
+        $tempFile = tempnam(md5(uniqid((string) rand(), true)), '');
         if ($tempFile) {
             $dir = realpath(dirname($tempFile));
             unlink($tempFile);

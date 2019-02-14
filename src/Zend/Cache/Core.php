@@ -170,7 +170,6 @@ class Zend_Cache_Core
     /**
      * Set the backend
      *
-     * @param  Zend_Cache_Backend $backendObject
      * @throws Zend_Cache_Exception
      * @return void
      */
@@ -400,7 +399,7 @@ class Zend_Cache_Core
             $result = $this->_backend->save($data, $id, $tags, $specificLifetime);
         }
         if ($this->_options['ignore_user_abort']) {
-            ignore_user_abort($abort);
+            ignore_user_abort((bool) $abort);
         }
 
         if (!$result) {

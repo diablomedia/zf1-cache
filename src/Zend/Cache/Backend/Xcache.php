@@ -118,7 +118,7 @@ class Zend_Cache_Backend_Xcache extends Zend_Cache_Backend implements Zend_Cache
      * @param string $data datas to cache
      * @param string $id cache id
      * @param array $tags array of strings, the cache record will be tagged by each string entry
-     * @param int $specificLifetime if != false, set a specific lifetime for this cache record
+     * @param false|int|null $specificLifetime if != false, set a specific lifetime for this cache record
      *                              (null => infinite lifetime)
      * @return boolean true if no problem
      */

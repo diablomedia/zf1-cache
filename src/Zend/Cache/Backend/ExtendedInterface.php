@@ -89,7 +89,7 @@ interface Zend_Cache_Backend_ExtendedInterface extends Zend_Cache_Backend_Interf
      * - mtime : timestamp of last modification time
      *
      * @param string $id cache id
-     * @return array array of metadatas (false if the cache id is not found)
+     * @return false|array array of metadatas (false if the cache id is not found)
      */
     public function getMetadatas($id);
 

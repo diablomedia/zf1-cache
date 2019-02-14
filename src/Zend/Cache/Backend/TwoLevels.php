@@ -182,7 +182,7 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
      * @param  string $data            Datas to cache
      * @param  string $id              Cache id
      * @param  array $tags             Array of strings, the cache record will be tagged by each string entry
-     * @param  int   $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
+     * @param  false|int|null   $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
      * @param  int   $priority         integer between 0 (very low priority) and 10 (maximum priority) used by some particular backends
      * @return boolean true if no problem
      */
@@ -516,7 +516,10 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
     public function ___expire($id)
     {
         $this->_fastBackend->remove($id);
-        $this->_slowBackend->___expire($id);
+        // Not all cache backends have the ___expire method and not defined on the interface
+        if (method_exists($this->_slowBackend, '___expire')) {
+            $this->_slowBackend->___expire($id);
+        }
     }
 
     private function _getFastFillingPercentage($mode)

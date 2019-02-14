@@ -69,7 +69,7 @@ class Zend_Cache_Frontend_Function extends Zend_Cache_Core
      * @param  callable $callback         A valid callback
      * @param  array    $parameters       Function parameters
      * @param  array    $tags             Cache tags
-     * @param  int      $specificLifetime If != false, set a specific lifetime for this cache record
+     * @param  false|int|null      $specificLifetime If != false, set a specific lifetime for this cache record
      *                                    (null => infinite lifetime)
      * @param  int      $priority         integer between 0 (very low priority) and 10 (maximum priority)
      *                                    used by some particular backends
@@ -103,7 +103,7 @@ class Zend_Cache_Frontend_Function extends Zend_Cache_Core
         } else {
             // A cache is not available (or not valid for this frontend)
             ob_start();
-            ob_implicit_flush(false);
+            ob_implicit_flush(0);
             $return = call_user_func_array($callback, $parameters);
             $output = ob_get_clean();
             $data   = array($output, $return);

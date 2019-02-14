@@ -869,9 +869,9 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         case 'md5':
             return md5($data);
         case 'crc32':
-            return crc32($data);
+            return (string) crc32($data);
         case 'strlen':
-            return strlen($data);
+            return (string) strlen($data);
         case 'adler32':
             return hash('adler32', $data);
         default:

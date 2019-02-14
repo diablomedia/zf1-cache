@@ -64,7 +64,7 @@ class Zend_Cache_Frontend_Output extends Zend_Cache_Core
             }
         }
         ob_start();
-        ob_implicit_flush(false);
+        ob_implicit_flush(0);
         $this->_idStack[] = $id;
         return false;
     }
@@ -73,7 +73,7 @@ class Zend_Cache_Frontend_Output extends Zend_Cache_Core
      * Stop the cache
      *
      * @param  array   $tags             Tags array
-     * @param  int     $specificLifetime If != false, set a specific lifetime for this cache record
+     * @param  false|int|null     $specificLifetime If != false, set a specific lifetime for this cache record
      *                                   (null => infinite lifetime)
      * @param  string  $forcedDatas      If not null, force written datas with this
      * @param  boolean $echoData         If set to true, datas are sent to the browser

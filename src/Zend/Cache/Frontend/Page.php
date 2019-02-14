@@ -228,7 +228,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
     /**
      * Start the cache
      *
-     * @param  string  $id (optional) A cache id
+     * @param  false|string  $id (optional) A cache id
      *                     (if you set a value here, maybe you have to use Output frontend instead)
      * @param  boolean $doNotDie For unit testing only !
      * @return boolean True if the cache is hit (false else)
@@ -281,7 +281,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
             die();
         }
         ob_start(array($this, '_flush'));
-        ob_implicit_flush(false);
+        ob_implicit_flush(0);
         return false;
     }
 
