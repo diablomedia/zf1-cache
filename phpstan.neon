@@ -60,3 +60,8 @@ parameters:
         - '#Method Zend_Cache::factory\(\) should return Zend_Cache_Core but empty return statement found\.#'
         - '#Strict comparison using === between int and null will always evaluate to false\.#'
         - '#Strict comparison using === between string and null will always evaluate to false\.#'
+        # Defensive coding, type is defined in docblock, can't be enforced by php type-hints since it can be multiple
+        # types (string|Zend_Cache_Core)
+        -
+            message: '#Else branch is unreachable because previous condition is always true\.#'
+            path: %currentWorkingDirectory%/src/Zend/Cache.php
