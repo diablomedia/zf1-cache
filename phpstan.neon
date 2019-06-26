@@ -7,9 +7,6 @@ parameters:
         - %rootDir%/../../../vendor/*
     bootstrap: %rootDir%/../../../phpstan-bootstrap.php
     ignoreErrors:
-        - 
-            message: '#Strict comparison using === between array<int, string> and false will always evaluate to false\.#'
-            path: %currentWorkingDirectory%/src/Zend/Cache/Backend/File.php
         -
             message: '#Method Zend_Cache_Backend_Interface::save\(\) invoked with 5 parameters, 2-4 required\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
@@ -29,34 +26,34 @@ parameters:
         - '#Variable \$abort might not be defined\.#'
         # Backend classes implement, but abstract does not, can't change $this->_backend to just the interface though,
         # as the setBackend method has the backend parameter type-hinted to Zend_Cache_Backend
-        - 
+        -
             message: '#Call to an undefined method Zend_Cache_Backend::getCapabilities\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
-        - 
+        -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getIdsMatchingTags\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
-        - 
+        -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getIdsMatchingAnyTags\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
-        - 
+        -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getIdsNotMatchingTags\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
-        - 
+        -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getIds\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
-        - 
+        -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getTags\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
-        - 
+        -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getFillingPercentage\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
-        - 
+        -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getMetadatas\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
-        - 
+        -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::touch\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
-                    
+
         - '#Method Zend_Cache::factory\(\) should return Zend_Cache_Core but empty return statement found\.#'
         - '#Strict comparison using === between int and null will always evaluate to false\.#'
         - '#Strict comparison using === between string and null will always evaluate to false\.#'
