@@ -6,6 +6,7 @@ parameters:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     bootstrap: %rootDir%/../../../phpstan-bootstrap.php
+    inferPrivatePropertyTypeFromConstructor: true
     ignoreErrors:
         -
             message: '#Method Zend_Cache_Backend_Interface::save\(\) invoked with 5 parameters, 2-4 required\.#'
