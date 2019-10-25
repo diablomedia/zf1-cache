@@ -29,6 +29,9 @@
  */
 class Zend_Cache_Frontend_Output extends Zend_Cache_Core
 {
+    /**
+     * @var string[]
+     */
     private $_idStack = array();
 
     /**
