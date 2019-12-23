@@ -195,7 +195,6 @@ class Zend_Cache_Backend_ZendPlatform extends Zend_Cache_Backend implements Zend
                 }
                 $cache_dir .= '/.php_cache_api/';
                 return $this->_clean($cache_dir, $mode);
-                break;
             case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
                 $idlist = null;
                 foreach ($tags as $tag) {
@@ -217,14 +216,12 @@ class Zend_Cache_Backend_ZendPlatform extends Zend_Cache_Backend implements Zend
                     }
                 }
                 return true;
-                break;
             case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
                 $this->_log(
                     'Zend_Cache_Backend_ZendPlatform::clean() : CLEANING_MODE_NOT_MATCHING_TAG ' .
                     'is not supported by the Zend Platform backend'
                 );
                 return false;
-                break;
             case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
                 $idlist = null;
                 foreach ($tags as $tag) {
@@ -246,11 +243,12 @@ class Zend_Cache_Backend_ZendPlatform extends Zend_Cache_Backend implements Zend
                     }
                 }
                 return true;
-                break;
             default:
                 Zend_Cache::throwException('Invalid mode for clean() method');
                 break;
         }
+
+        return false;
     }
 
     /**

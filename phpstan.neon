@@ -19,8 +19,6 @@ parameters:
         -
             message: '#Variable \$_COOKIE in isset\(\) always exists and is not nullable\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Frontend/Page.php
-        - '#Zend_Cache_.+::__construct\(\) does not call parent constructor from Zend_Cache_Core\.#'
-        - '#Zend_Cache_Backend_Test::__construct\(\) does not call parent constructor from Zend_Cache_Backend\.#'
         - '#Function accelerator_license_info not found\.#'
         - '#Variable \$tmp might not be defined\.#'
         - '#Variable \$resultSlow might not be defined\.#'

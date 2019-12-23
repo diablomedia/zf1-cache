@@ -139,7 +139,7 @@ class Zend_Cache_Backend
      * else, the global lifetime is used
      *
      * @param  int|false $specificLifetime
-     * @return int Cache life time
+     * @return int|null Cache life time
      */
     public function getLifetime($specificLifetime)
     {
@@ -216,6 +216,9 @@ class Zend_Cache_Backend
             return '\\temp';
         }
         Zend_Cache::throwException('Could not determine temp directory, please specify a cache_dir manually');
+
+        // Technically this won't get hit because the above throws an exception, phpstan just doesn't see that
+        return '';
     }
 
     /**

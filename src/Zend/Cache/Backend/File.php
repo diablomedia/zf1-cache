@@ -377,6 +377,8 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         $total = disk_total_space($this->_options['cache_dir']);
         if ($total == 0) {
             Zend_Cache::throwException('can\'t get disk_total_space');
+            // Code won't get here as above throws exception
+            return 0;
         } else {
             if ($free >= $total) {
                 return 100;
@@ -876,6 +878,8 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
             return hash('adler32', $data);
         default:
             Zend_Cache::throwException("Incorrect hash function : $controlType");
+            // Above line throws an exception, so code won't get here
+            return '';
         }
     }
 

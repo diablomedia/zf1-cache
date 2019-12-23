@@ -137,7 +137,6 @@ class Zend_Cache_Backend_WinCache extends Zend_Cache_Backend implements Zend_Cac
         switch ($mode) {
             case Zend_Cache::CLEANING_MODE_ALL:
                 return wincache_ucache_clear();
-                break;
             case Zend_Cache::CLEANING_MODE_OLD:
                 $this->_log(
                     'Zend_Cache_Backend_WinCache::clean() : CLEANING_MODE_OLD is unsupported by the WinCache backend'
@@ -152,6 +151,8 @@ class Zend_Cache_Backend_WinCache extends Zend_Cache_Backend implements Zend_Cac
                 Zend_Cache::throwException('Invalid mode for clean() method');
                 break;
         }
+
+        return false;
     }
 
     /**

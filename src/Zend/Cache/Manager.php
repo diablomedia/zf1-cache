@@ -140,7 +140,7 @@ class Zend_Cache_Manager
      * using a named configuration template
      *
      * @param  string $name
-     * @return Zend_Cache_Core
+     * @return Zend_Cache_Core|null
      */
     public function getCache($name)
     {
@@ -168,6 +168,8 @@ class Zend_Cache_Manager
 
             return $this->_caches[$name];
         }
+
+        return null;
     }
 
     /**
@@ -227,13 +229,15 @@ class Zend_Cache_Manager
      * Get the named configuration template
      *
      * @param  string $name
-     * @return array
+     * @return array|null
      */
     public function getCacheTemplate($name)
     {
         if (isset($this->_optionTemplates[$name])) {
             return $this->_optionTemplates[$name];
         }
+
+        return null;
     }
 
     /**
