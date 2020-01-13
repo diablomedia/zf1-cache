@@ -5,7 +5,6 @@ parameters:
     excludes_analyse:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
-    bootstrap: %rootDir%/../../../phpstan-bootstrap.php
     inferPrivatePropertyTypeFromConstructor: true
     ignoreErrors:
         -
@@ -26,7 +25,7 @@ parameters:
         # Backend classes implement, but abstract does not, can't change $this->_backend to just the interface though,
         # as the setBackend method has the backend parameter type-hinted to Zend_Cache_Backend
         -
-            message: '#Call to an undefined method Zend_Cache_Backend::getCapabilities\(\)\.#'
+            message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getCapabilities\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
         -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getIdsMatchingTags\(\)\.#'
@@ -61,3 +60,7 @@ parameters:
         -
             message: '#Else branch is unreachable because previous condition is always true\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache.php
+        # Comes from XCache extension, was in our branched phpstorm repo, but removed that
+        -
+            message: '#Constant XC_TYPE_VAR not found\.#'
+            path: src/Zend/Cache/Backend/Xcache.php
