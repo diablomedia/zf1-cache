@@ -25,7 +25,7 @@ parameters:
         # Backend classes implement, but abstract does not, can't change $this->_backend to just the interface though,
         # as the setBackend method has the backend parameter type-hinted to Zend_Cache_Backend
         -
-            message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getCapabilities\(\)\.#'
+            message: '#Call to an undefined method Zend_Cache_Backend::getCapabilities\(\)\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Core.php
         -
             message: '#Call to an undefined method Zend_Cache_Backend\|Zend_Cache_Backend_Interface::getIdsMatchingTags\(\)\.#'
