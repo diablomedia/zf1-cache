@@ -19,6 +19,7 @@ parameters:
             message: '#Variable \$_COOKIE in isset\(\) always exists and is not nullable\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Frontend/Page.php
         - '#Function accelerator_license_info not found\.#'
+        - '#Function accelerator_get_configuration not found\.#'
         - '#Variable \$tmp might not be defined\.#'
         - '#Variable \$resultSlow might not be defined\.#'
         - '#Variable \$abort might not be defined\.#'
