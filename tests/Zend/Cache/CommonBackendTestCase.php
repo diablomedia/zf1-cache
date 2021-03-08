@@ -227,10 +227,10 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
     public function testCleanModeAll()
     {
         if ($this instanceof Zend_Cache_MemcachedBackendTest
-            && getenv('TRAVIS')
+            && getenv('GITHUB_ACTIONS')
         ) {
             $this->markTestSkipped(
-                'Test randomly fail on Travis CI.'
+                'Test randomly fail on CI.'
             );
         }
 
