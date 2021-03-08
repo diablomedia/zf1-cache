@@ -1,6 +1,6 @@
 <?php
 
-if (getenv('TRAVIS')) {
+if (getenv('GITHUB_ACTIONS')) {
     defined('TESTS_ZEND_CACHE_MEMCACHED_ENABLED') || define('TESTS_ZEND_CACHE_MEMCACHED_ENABLED', true);
     defined('TESTS_ZEND_CACHE_LIBMEMCACHED_ENABLED') || define('TESTS_ZEND_CACHE_LIBMEMCACHED_ENABLED', true);
 } else {
