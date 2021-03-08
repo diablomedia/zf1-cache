@@ -37,7 +37,7 @@ jobs:
               uses: shivammathur/setup-php@2.10.0
               with:
                   php-version: ${{ matrix.php-versions }}
-                  extensions: mbstring, apc, apcu, memcached
+                  extensions: mbstring, apc, apcu, memcached, memcache
                   coverage: pcov
                   tools: cs2pr
                   ini-values: apc.enabled=1, apc.enable_cli=1
