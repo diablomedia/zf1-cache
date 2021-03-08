@@ -39,7 +39,7 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         parent::__construct('Zend_Cache_Backend_Memcached', $data, $dataName);
     }
 
-    public function setUp($notag = true)
+    public function setUp($notag = true): void
     {
         if (!defined('TESTS_ZEND_CACHE_MEMCACHED_ENABLED') ||
             constant('TESTS_ZEND_CACHE_MEMCACHED_ENABLED') === false) {
@@ -85,7 +85,7 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         parent::setUp($notag);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->_instance);

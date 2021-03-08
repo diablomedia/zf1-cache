@@ -43,7 +43,7 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
         parent::__construct($name, $data, $dataName);
     }
 
-    public function setUp($notag = false)
+    public function setUp($notag = false): void
     {
         $this->mkdir();
         $this->_instance->setDirectives(array('logging' => true));
@@ -91,7 +91,7 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if ($this->_instance) {
             $this->_instance->clean();
@@ -178,7 +178,7 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
         if (!($res > 999999)) {
             $this->fail('test() return an incorrect integer');
         }
-        $this->assertInternalType('int', $res);
+        $this->assertIsInt($res);
     }
 
     public function testTestWithANonExistingCacheId()
@@ -196,7 +196,7 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
         if (!($res > 999999)) {
             $this->fail('test() return an incorrect integer');
         }
-        $this->assertInternalType('int', $res);
+        $this->assertIsInt($res);
     }
 
     public function testGetWithANonExistingCacheId()
@@ -285,7 +285,7 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
 
     public function testGetOption()
     {
-        $this->assertInternalType('numeric', $this->_instance->getOption('LifeTime'));
+        $this->assertIsNumeric($this->_instance->getOption('LifeTime'));
 
         $this->expectException('Zend_Cache_Exception');
         $this->_instance->getOption('unknown');

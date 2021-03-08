@@ -22,7 +22,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase
         parent::__construct('Zend_Cache_Backend_Static', $data, $dataName);
     }
 
-    public function setUp($notag = false)
+    public function setUp($notag = false): void
     {
         $this->mkdir();
         $this->_cache_dir = $this->mkdir();
@@ -55,7 +55,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase
         $this->_instance->save('bar3 : data to cache', bin2hex('/bar3'), array('tag2', 'tag3'));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->_instance);

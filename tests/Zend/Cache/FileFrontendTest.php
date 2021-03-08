@@ -40,7 +40,7 @@ class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase
     private $_masterFile2;
 
 
-    public function setUp()
+    public function setUp(): void
     {
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $this->_masterFile  = $this->_getTmpDirWindows() . DIRECTORY_SEPARATOR . 'zend_cache_master';
@@ -89,7 +89,7 @@ class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_instance1);
         unlink($this->_masterFile);

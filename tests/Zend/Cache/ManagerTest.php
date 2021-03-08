@@ -28,7 +28,7 @@
  */
 class Zend_Cache_ManagerTest extends PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->_cache_dir = $this->mkdir();
         $this->_cache     = Zend_Cache::factory(
@@ -39,7 +39,7 @@ class Zend_Cache_ManagerTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->rmdir();
         $this->_cache = null;
@@ -60,7 +60,7 @@ class Zend_Cache_ManagerTest extends PHPUnit\Framework\TestCase
         $manager = new Zend_Cache_Manager();
         $caches  = $manager->getCaches();
 
-        $this->assertInternalType('array', $caches);
+        $this->assertIsArray($caches);
         $this->assertArrayHasKey('default', $caches);
     }
 

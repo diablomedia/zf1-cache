@@ -38,7 +38,7 @@ class Zend_Cache_ZendPlatformBackendTest extends Zend_Cache_CommonBackendTestCas
         parent::__construct('Zend_Cache_Backend_ZendPlatform', $data, $dataName);
     }
 
-    public function setUp($notag = false)
+    public function setUp($notag = false): void
     {
         if (!defined('TESTS_ZEND_CACHE_PLATFORM_ENABLED') ||
             constant('TESTS_ZEND_CACHE_PLATFORM_ENABLED') === false) {
@@ -57,7 +57,7 @@ class Zend_Cache_ZendPlatformBackendTest extends Zend_Cache_CommonBackendTestCas
         parent::setUp($notag);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->_instance);

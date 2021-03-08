@@ -78,7 +78,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
     private $_instance1;
     private $_instance2;
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!$this->_instance1) {
             $options1 = array(
@@ -98,7 +98,7 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_instance1);
         unset($this->_instance2);

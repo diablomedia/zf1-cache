@@ -38,7 +38,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
         parent::__construct($name);
     }
 
-    public function setUp($notag = false)
+    public function setUp($notag = false): void
     {
         parent::setUp($notag);
         $this->_capabilities = $this->_instance->getCapabilities();
@@ -47,7 +47,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
     public function testGetFillingPercentage()
     {
         $res = $this->_instance->getFillingPercentage();
-        $this->assertInternalType('integer', $res);
+        $this->assertIsInt($res);
         $this->assertTrue($res >= 0);
         $this->assertTrue($res <= 100);
     }
@@ -58,7 +58,7 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
         $this->_instance->clean(Zend_Cache::CLEANING_MODE_ALL);
         $res = $this->_instance->getFillingPercentage();
         $this->_instance->setDirectives(array('logging' => true)); // ???
-        $this->assertInternalType('integer', $res);
+        $this->assertIsInt($res);
         $this->assertTrue($res >= 0);
         $this->assertTrue($res <= 100);
     }

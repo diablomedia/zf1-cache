@@ -38,7 +38,7 @@ class Zend_Cache_ZendServerDiskTest extends Zend_Cache_CommonBackendTestCase
         parent::__construct('Zend_Cache_Backend_ZendServer_Disk', $data, $dataName);
     }
 
-    public function setUp($notag = true)
+    public function setUp($notag = true): void
     {
         if (!defined('TESTS_ZEND_CACHE_ZENDSERVER_ENABLED') ||
             constant('TESTS_ZEND_CACHE_ZENDSERVER_ENABLED') === false) {
@@ -53,7 +53,7 @@ class Zend_Cache_ZendServerDiskTest extends Zend_Cache_CommonBackendTestCase
         parent::setUp(true);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->_instance);
