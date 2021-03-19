@@ -13,15 +13,10 @@ parameters:
         # These aren't always set, i.e. in CLI requests. Perhaps worth a bug report to phpstan
         # Reported here actually: https://github.com/phpstan/phpstan/issues/1299 but suggestion is to ignore
         -
-            message: '#Variable \$_SESSION in isset\(\) always exists and is not nullable\.#'
-            path: %currentWorkingDirectory%/src/Zend/Cache/Frontend/Page.php
-        -
             message: '#Variable \$_COOKIE in isset\(\) always exists and is not nullable\.#'
             path: %currentWorkingDirectory%/src/Zend/Cache/Frontend/Page.php
         - '#Function accelerator_license_info not found\.#'
-        - '#Function accelerator_get_configuration not found\.#'
         - '#Variable \$tmp might not be defined\.#'
-        - '#Variable \$resultSlow might not be defined\.#'
         - '#Variable \$abort might not be defined\.#'
         # Backend classes implement, but abstract does not, can't change $this->_backend to just the interface though,
         # as the setBackend method has the backend parameter type-hinted to Zend_Cache_Backend
