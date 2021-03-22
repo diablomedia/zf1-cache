@@ -1,3 +1,5 @@
+includes:
+    - phpstan-php8.php
 parameters:
     level: 5
     paths:
