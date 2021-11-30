@@ -71,7 +71,7 @@ class Zend_Cache_Backend_ZendPlatform extends Zend_Cache_Backend implements Zend
                 'The cache copies directory \'' . ini_get('zend_accelerator.output_cache_dir') . '\' must be writable !'
             );
         }
-        parent:: __construct($options);
+        parent::__construct($options);
     }
 
     /**

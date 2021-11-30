@@ -4,7 +4,7 @@ parameters:
     level: 5
     paths:
         - ./
-    excludes_analyse:
+    excludePaths:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     inferPrivatePropertyTypeFromConstructor: true
