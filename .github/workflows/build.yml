@@ -16,7 +16,7 @@ jobs:
                 php-versions: ['7.4', '8.0', '8.1']
                 composer-args: ['', '--prefer-lowest']
         runs-on: ${{ matrix.operating-system }}
-                services:
+        services:
             memcached:
                 image: memcached:latest
                 ports:
