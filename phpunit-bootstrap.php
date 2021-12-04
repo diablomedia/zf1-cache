@@ -8,7 +8,7 @@ if (getenv('GITHUB_ACTIONS')) {
     defined('TESTS_ZEND_CACHE_LIBMEMCACHED_ENABLED') || define('TESTS_ZEND_CACHE_LIBMEMCACHED_ENABLED', false);
 }
 
-if (extension_loaded('apc')) {
+if (extension_loaded('apc') || extension_loaded('apcu')) {
     defined('TESTS_ZEND_CACHE_APC_ENABLED') || define('TESTS_ZEND_CACHE_APC_ENABLED', true);
 } else {
     defined('TESTS_ZEND_CACHE_APC_ENABLED') || define('TESTS_ZEND_CACHE_APC_ENABLED', false);

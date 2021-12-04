@@ -47,7 +47,7 @@ class Zend_Cache_TwoLevelsBackendTest extends Zend_Cache_CommonExtendedBackendTe
             constant('TESTS_ZEND_CACHE_WINCACHE_ENABLED') === false)) {
             $this->markTestSkipped('Tests are not enabled in TestConfiguration.php');
             return;
-        } elseif (!extension_loaded('apc') && !extension_loaded('wincache')) {
+        } elseif (!extension_loaded('apc') && !extension_loaded('apcu') && !extension_loaded('wincache')) {
             $this->markTestSkipped("Extension 'APC' and 'wincache' are not loaded");
             return;
         }

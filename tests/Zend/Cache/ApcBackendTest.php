@@ -44,7 +44,7 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTestCase
             constant('TESTS_ZEND_CACHE_APC_ENABLED') === false) {
             $this->markTestSkipped('Tests are not enabled in TestConfiguration.php');
             return;
-        } elseif (!extension_loaded('apc')) {
+        } elseif (!extension_loaded('apc') && !extension_loaded('apcu')) {
             $this->markTestSkipped("Extension 'APC' is not loaded");
             return;
         }
