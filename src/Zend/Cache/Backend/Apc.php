@@ -263,7 +263,7 @@ class Zend_Cache_Backend_Apc extends Zend_Cache_Backend implements Zend_Cache_Ba
     {
         $ids      = array();
         if (class_exists('APCUIterator', false)) {
-            $iterator = new APCIterator('user', null, APC_ITER_KEY);
+            $iterator = new APCUIterator(null, APC_ITER_KEY);
         } else {
             $iterator = new APCIterator('user', null, APC_ITER_KEY);
         }
@@ -337,7 +337,11 @@ class Zend_Cache_Backend_Apc extends Zend_Cache_Backend implements Zend_Cache_Ba
             if ($newLifetime <= 0) {
                 return false;
             }
-            apc_store($id, array($data, time(), $newLifetime), $newLifetime);
+            if (function_exists('apcu_store')) {
+                apcu_store($id, array($data, time(), $newLifetime), $newLifetime);
+            } else {
+                apc_store($id, array($data, time(), $newLifetime), $newLifetime);
+            }
             return true;
         }
         return false;
