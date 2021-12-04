@@ -5,6 +5,7 @@
     "array", "string", "int", "float", "bool", "iterable", "callable", "void", "object",
     "accelerator_get_configuration", "accelerator_license_info",
     "apc_clear_cache", "apc_delete", "apc_fetch", "APC_ITER_KEY", "apc_sma_info", "apc_store", "APCIterator",
+    "apcu_clear_cache", "apcu_delete", "apcu_fetch", "apcu_sma_info", "apcu_store", "APCUIterator",
     "hash",
     "Memcache", "MEMCACHE_COMPRESSED",
     "Memcached",
