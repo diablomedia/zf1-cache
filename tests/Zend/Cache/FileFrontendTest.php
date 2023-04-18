@@ -38,7 +38,7 @@ class Zend_Cache_FileFrontendTest extends PHPUnit\Framework\TestCase
     private $_masterFile;
     private $_masterFile1;
     private $_masterFile2;
-
+    protected $_backend;
 
     public function setUp(): void
     {

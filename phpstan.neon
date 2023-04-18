@@ -19,7 +19,6 @@ parameters:
             path: %currentWorkingDirectory%/src/Zend/Cache/Frontend/Page.php
         - '#Function accelerator_license_info not found\.#'
         - '#Variable \$tmp might not be defined\.#'
-        - '#Variable \$abort might not be defined\.#'
         # Backend classes implement, but abstract does not, can't change $this->_backend to just the interface though,
         # as the setBackend method has the backend parameter type-hinted to Zend_Cache_Backend
         -

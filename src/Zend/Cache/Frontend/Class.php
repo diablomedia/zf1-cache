@@ -249,16 +249,6 @@ class Zend_Cache_Frontend_Class extends Zend_Cache_Core
     }
 
     /**
-     * ZF-9970
-     *
-     * @deprecated
-     */
-    private function _makeId($name, $args)
-    {
-        return $this->makeId($name, $args);
-    }
-
-    /**
      * Make a cache id from the method name and parameters
      *
      * @param  string $name Method name

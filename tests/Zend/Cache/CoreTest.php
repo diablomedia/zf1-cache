@@ -32,6 +32,7 @@
 class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
 {
     private $_instance;
+    protected $_backend;
 
     public function setUp(): void
     {
@@ -483,7 +484,7 @@ class Zend_Cache_CoreTest extends PHPUnit\Framework\TestCase
         $this->_instance->setBackend($this->_backend);
 
         $logger = $this->_instance->getOption('logger');
-        $this->assertTrue($logger instanceof Zend_Log);
+        $this->assertInstanceOf(Zend_Log::class, $logger);
     }
 
     /**

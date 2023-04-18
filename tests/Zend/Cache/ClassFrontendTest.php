@@ -77,6 +77,8 @@ class Zend_Cache_ClassFrontendTest extends PHPUnit\Framework\TestCase
 {
     private $_instance1;
     private $_instance2;
+    protected $_backend1;
+    protected $_backend2;
 
     public function setUp(): void
     {

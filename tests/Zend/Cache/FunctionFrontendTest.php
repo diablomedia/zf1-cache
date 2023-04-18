@@ -54,6 +54,7 @@ class fooclass
 class Zend_Cache_FunctionFrontendTest extends PHPUnit\Framework\TestCase
 {
     private $_instance;
+    protected $_backend;
 
     public function setUp(): void
     {

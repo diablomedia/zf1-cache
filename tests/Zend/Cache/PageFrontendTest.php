@@ -32,6 +32,7 @@
 class Zend_Cache_PageFrontendTest extends PHPUnit\Framework\TestCase
 {
     private $_instance;
+    protected $_backend;
 
     public function setUp(): void
     {

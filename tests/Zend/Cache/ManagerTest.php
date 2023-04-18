@@ -28,6 +28,9 @@
  */
 class Zend_Cache_ManagerTest extends PHPUnit\Framework\TestCase
 {
+    protected $_cache;
+    protected $_cache_dir;
+
     public function setUp(): void
     {
         $this->_cache_dir = $this->mkdir();
@@ -252,7 +255,7 @@ class Zend_Cache_ManagerTest extends PHPUnit\Framework\TestCase
         $tagCacheConfig['backend']['options']['cache_dir'] = $this->getTmpDir();
         $manager->setTemplateOptions('pagetag', $tagCacheConfig);
         $tagCache = $manager->getCache('page')->getBackend()->getOption('tag_cache');
-        $this->assertTrue($tagCache instanceof Zend_Cache_Core);
+        $this->assertInstanceOf(Zend_Cache_Core::class, $tagCache);
     }
 
     /**
