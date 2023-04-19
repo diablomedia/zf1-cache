@@ -10,7 +10,6 @@
     "license": "BSD-3-Clause",
     "require": {
         "php": "^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0",
-        "ext-random": "*",
         "diablomedia/zendframework1-exception": "dev-master as 1.0.0",
         "diablomedia/zendframework1-config": "dev-php-82 as 2.0.0",
         "diablomedia/zendframework1-loader": "dev-php-82 as 1.0.0",
