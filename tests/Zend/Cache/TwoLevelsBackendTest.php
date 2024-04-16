@@ -101,14 +101,14 @@ class Zend_Cache_TwoLevelsBackendTest extends Zend_Cache_CommonExtendedBackendTe
     {
         $slowBackend = 'File';
         $fastBackend = $this->getMockBuilder('Zend_Cache_Backend_Apc')
-            ->setMethods(array('getFillingPercentage'))
+            ->onlyMethods(array('getFillingPercentage'))
             ->getMock();
-        $fastBackend->expects($this->at(0))
+        $fastBackend->expects($this->exactly(0))
             ->method('getFillingPercentage')
-            ->will($this->returnValue(0));
-        $fastBackend->expects($this->at(1))
+            ->willReturn(0);
+        $fastBackend->expects($this->exactly(1))
             ->method('getFillingPercentage')
-            ->will($this->returnValue(90));
+            ->willReturn(90);
 
 
         $slowBackendOptions = array(
@@ -137,11 +137,11 @@ class Zend_Cache_TwoLevelsBackendTest extends Zend_Cache_CommonExtendedBackendTe
     {
         $slowBackend = 'File';
         $fastBackend = $this->getMockBuilder('Zend_Cache_Backend_Apc')
-            ->setMethods(array('getFillingPercentage'))
+            ->onlyMethods(array('getFillingPercentage'))
             ->getMock();
         $fastBackend->expects($this->any())
             ->method('getFillingPercentage')
-            ->will($this->returnValue(90));
+            ->willReturn(90);
 
         $slowBackendOptions = array(
             'cache_dir' => $this->_cache_dir
