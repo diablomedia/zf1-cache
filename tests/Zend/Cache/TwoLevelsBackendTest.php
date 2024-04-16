@@ -33,11 +33,7 @@ class Zend_Cache_TwoLevelsBackendTest extends Zend_Cache_CommonExtendedBackendTe
 {
     protected $_instance;
     private $_cache_dir;
-
-    public function __construct($name = null, array $data = array(), $dataName = '')
-    {
-        parent::__construct('Zend_Cache_Backend_TwoLevels', $data, $dataName);
-    }
+    protected $_className = 'Zend_Cache_Backend_TwoLevels';
 
     public function setUp($notag = false): void
     {

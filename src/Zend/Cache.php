@@ -163,7 +163,7 @@ abstract class Zend_Cache
         if (in_array($backend, Zend_Cache::$standardBackends)) {
             // we use a standard backend
             $backendClass = 'Zend_Cache_Backend_' . $backend;
-        // security controls are explicit
+            // security controls are explicit
         } else {
             // we use a custom backend
             if (!preg_match('~^[\w\\\\]+$~D', $backend)) {
@@ -208,7 +208,7 @@ abstract class Zend_Cache
             // we use a standard frontend
             // For perfs reasons, with frontend == 'Core', we can interact with the Core itself
             $frontendClass = 'Zend_Cache_' . ($frontend != 'Core' ? 'Frontend_' : '') . $frontend;
-        // security controls are explicit
+            // security controls are explicit
         } else {
             // we use a custom frontend
             if (!preg_match('~^[\w\\\\]+$~D', $frontend)) {

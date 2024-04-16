@@ -33,11 +33,6 @@ class Zend_Cache_CommonExtendedBackendTestCase extends Zend_Cache_CommonBackendT
 {
     private $_capabilities;
 
-    public function __construct($name = null, array $data = array(), $dataName = '')
-    {
-        parent::__construct($name);
-    }
-
     public function setUp($notag = false): void
     {
         parent::setUp($notag);

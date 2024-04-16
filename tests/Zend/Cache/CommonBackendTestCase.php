@@ -35,12 +35,9 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
     protected $_className;
     protected $_root;
 
-    public function __construct($name = null, array $data = array(), $dataName = '')
+    public static function setUpBeforeClass(): void
     {
-        $this->_className = $name;
-        $this->_root      = dirname(__FILE__);
         date_default_timezone_set('UTC');
-        parent::__construct($name, $data, $dataName);
     }
 
     public function setUp($notag = false): void
@@ -76,6 +73,10 @@ abstract class Zend_Cache_CommonBackendTestCase extends PHPUnit\Framework\TestCa
 
     public function getTmpDir($date = true)
     {
+        if (!$this->_root) {
+            $this->_root = dirname(__FILE__);
+        }
+        
         $suffix = '';
         if ($date) {
             $suffix = date('mdyHis');

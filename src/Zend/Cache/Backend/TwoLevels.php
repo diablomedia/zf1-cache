@@ -236,7 +236,7 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
         if ($resultFast === false && $this->_options['auto_fill_fast_cache']) {
             $preparedData = $this->_prepareData($array['data'], $array['lifetime'], $array['priority']);
             $this->_fastBackend->save($preparedData, $id, array(), $array['lifetime']);
-        // maybe, we have to refresh the fast cache ?
+            // maybe, we have to refresh the fast cache ?
         } elseif ($this->_options['auto_refresh_fast_cache']) {
             if ($array['priority'] == 10) {
                 // no need to refresh the fast cache with priority = 10

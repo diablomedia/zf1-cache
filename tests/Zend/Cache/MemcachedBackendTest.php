@@ -33,11 +33,7 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
 {
     protected $_instance;
     protected $_skipped;
-
-    public function __construct($name = null, array $data = array(), $dataName = '')
-    {
-        parent::__construct('Zend_Cache_Backend_Memcached', $data, $dataName);
-    }
+    protected $_className = 'Zend_Cache_Backend_Memcached';
 
     public function setUp($notag = true): void
     {

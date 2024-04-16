@@ -34,11 +34,7 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCas
     protected $_instance;
     protected $_instance2;
     protected $_cache_dir;
-
-    public function __construct($name = null, array $data = array(), $dataName = '')
-    {
-        parent::__construct('Zend_Cache_Backend_File', $data, $dataName);
-    }
+    protected $_className = 'Zend_Cache_Backend_File';
 
     public function setUp($notag = false): void
     {
@@ -54,12 +50,20 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCas
         $this->_instance->setDirectives(array('logger' => $logger));
 
         parent::setUp($notag);
+
+        set_error_handler(
+            static function ($errno, $errstr) {
+                throw new \Exception($errstr, $errno);
+            },
+            E_USER_NOTICE
+        );
     }
 
     public function tearDown(): void
     {
         parent::tearDown();
         unset($this->_instance);
+        restore_error_handler();
     }
 
     public function testSetDeprecatedHashedDirectoryUmask()
@@ -72,7 +76,7 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCas
                 )
             );
             $this->fail('Missing expected E_USER_NOTICE error');
-        } catch (PHPUnit\Framework\Error\Error $e) {
+        } catch (\Exception $e) {
             if ($e->getCode() != E_USER_NOTICE) {
                 throw $e;
             }
@@ -91,7 +95,7 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTestCas
                 )
             );
             $this->fail('Missing expected E_USER_NOTICE error');
-        } catch (PHPUnit\Framework\Error\Error $e) {
+        } catch (\Exception $e) {
             if ($e->getCode() != E_USER_NOTICE) {
                 throw $e;
             }

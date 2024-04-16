@@ -16,11 +16,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase
     protected $_cache_dir;
     protected $_requestUriOld;
     protected $_innerCache;
-
-    public function __construct($name = null, array $data = array(), $dataName = '')
-    {
-        parent::__construct('Zend_Cache_Backend_Static', $data, $dataName);
-    }
+    protected $_className = 'Zend_Cache_Backend_Static';
 
     public function setUp($notag = false): void
     {
@@ -53,6 +49,13 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase
         $this->_instance->save('bar : data to cache', bin2hex('/bar'), array('tag3', 'tag4'));
         $this->_instance->save('bar2 : data to cache', bin2hex('/bar2'), array('tag3', 'tag1'));
         $this->_instance->save('bar3 : data to cache', bin2hex('/bar3'), array('tag2', 'tag3'));
+
+        set_error_handler(
+            static function ($errno, $errstr) {
+                throw new \Exception($errstr, $errno);
+            },
+            E_USER_NOTICE
+        );
     }
 
     public function tearDown(): void
@@ -61,6 +64,8 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase
         unset($this->_instance);
         $_SERVER['REQUEST_URI'] = $this->_requestUriOld;
         $this->rmdir();
+
+        restore_error_handler();
     }
 
     public function testConstructorCorrectCall()
@@ -152,7 +157,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase
         try {
             $this->_instance->setOption('cache_directory_umask', '777');
             $this->fail();
-        } catch (PHPUnit\Framework\Error\Error $e) {
+        } catch (\Exception $e) {
             $this->assertEquals(
                 "'cache_directory_umask' is deprecated -> please use 'cache_directory_perm' instead",
                 $e->getMessage()
@@ -168,7 +173,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTestCase
         try {
             $this->_instance->setOption('cache_file_umask', '777');
             $this->fail();
-        } catch (PHPUnit\Framework\Error\Error $e) {
+        } catch (\Exception $e) {
             $this->assertEquals(
                 "'cache_file_umask' is deprecated -> please use 'cache_file_perm' instead",
                 $e->getMessage()
