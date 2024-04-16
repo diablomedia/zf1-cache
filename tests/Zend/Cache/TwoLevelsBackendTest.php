@@ -103,10 +103,10 @@ class Zend_Cache_TwoLevelsBackendTest extends Zend_Cache_CommonExtendedBackendTe
         $fastBackend = $this->getMockBuilder('Zend_Cache_Backend_Apc')
             ->onlyMethods(array('getFillingPercentage'))
             ->getMock();
-        $fastBackend->expects($this->exactly(0))
+        $fastBackend->expects($this->never())
             ->method('getFillingPercentage')
             ->willReturn(0);
-        $fastBackend->expects($this->exactly(1))
+        $fastBackend->expects($this->once())
             ->method('getFillingPercentage')
             ->willReturn(90);
 
