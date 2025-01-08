@@ -164,7 +164,6 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      * Return the filling percentage of the backend storage
      *
      * @return int integer between 0 and 100
-     * @throws Zend_Cache_Exception
      */
     public function getFillingPercentage()
     {
